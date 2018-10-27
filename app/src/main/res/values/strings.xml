@@ -2,7 +2,7 @@
 
     <!--inconfont-->
     <string name="icon_back">&#xe625;</string>
-    <string name="icon_tab_home">&#xe6d3;</string>
+    <string name="icon_tab_home">&#xe635;</string>
     <string name="icon_tab_category">&#xe636;</string>
     <string name="icon_tab_auction">&#xeef4;</string>
     <string name="icon_tab_me">&#xe634;</string>
@@ -28,6 +28,10 @@
     <string name="icon_fingerprint">&#xe648;</string>
     <string name="icon_football_baby">&#xe602;</string>
     <string name="icon_close">&#xe626;</string>
+    <!--奖杯-->
+    <string name="icon_cup">&#xe604;</string>
+    <!--社区-->
+    <string name="icon_community">&#xe603;</string>
     <!--登录 注册-->
 
     <string name="login_register">正在注册    |    登录</string>

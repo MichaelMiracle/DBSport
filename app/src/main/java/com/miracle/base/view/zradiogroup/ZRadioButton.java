@@ -56,8 +56,11 @@ public class ZRadioButton extends LinearLayout implements Checkable {
                     binding.tvText.setText(ta.getString(attr));
                     break;
                 case R.styleable.ZRadioButton_ZRadioButton_TextSize:
-                    binding.tvIcon.setTextSize(TypedValue.COMPLEX_UNIT_PX, ta.getDimension(attr, DisplayUtil.sp2px(getContext(), 12)));
                     binding.tvText.setTextSize(TypedValue.COMPLEX_UNIT_PX, ta.getDimension(attr, DisplayUtil.sp2px(getContext(), 12)));
+                    break;
+                case R.styleable.ZRadioButton_ZRadioButton_IconTextSize:
+                    float dimension = ta.getDimension(attr, DisplayUtil.sp2px(getContext(), 12));
+                    binding.tvIcon.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimension);
                     break;
                 case R.styleable.ZRadioButton_ZRadioButton_TextColor:
                     binding.tvIcon.setTextColor(ta.getColorStateList(attr));

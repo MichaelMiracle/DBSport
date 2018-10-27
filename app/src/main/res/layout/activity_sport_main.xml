@@ -43,23 +43,25 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:ZRadioButton_Icon="@string/icon_tab_home"
-                app:ZRadioButton_Text="快讯" />
+                app:ZRadioButton_Text="首页" />
 
             <com.miracle.base.view.zradiogroup.ZRadioButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="-2dp"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_tab_category"
-                app:ZRadioButton_Text="分类" />
+                app:ZRadioButton_Icon="@string/icon_cup"
+                app:ZRadioButton_IconTextSize="22sp"
+                app:ZRadioButton_Text="赛程" />
 
             <com.miracle.base.view.zradiogroup.ZRadioButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="-2dp"
                 android:layout_weight="1"
-                app:ZRadioButton_Icon="@string/icon_tab_auction"
-                app:ZRadioButton_Text="数据" />
+                app:ZRadioButton_Icon="@string/icon_community"
+                app:ZRadioButton_IconTextSize="22sp"
+                app:ZRadioButton_Text="社区" />
 
             <LinearLayout
                 android:id="@+id/rlGroupChat"
