@@ -81,12 +81,7 @@
         <activity
             android:name=".base.switcher.WelcomeActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".michael.common.activity.RegisterActivity"
@@ -442,6 +437,16 @@
         <activity
             android:name=".michael.doudizhu.activity.DDZMyCollectionsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".sport.SportMainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">
