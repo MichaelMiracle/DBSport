@@ -2,6 +2,9 @@ package com.miracle.sport;
 
 import com.miracle.base.network.ZResponse;
 import com.miracle.michael.common.bean.NewsDetailBean;
+import com.miracle.sport.community.bean.PostBean;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Headers;
@@ -23,13 +26,18 @@ public interface SportService {
 
     /**
      * 帖子列表
+     *
+     * @param type     rm 热门，传空 最新
+     * @param class_id 圈子的帖子 ，传空 所有帖子，
+     * @param page     当前页
+     * @param pageSize 每页数量
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/circleList")
-    Call<ZResponse> getPostList(@Query("page") int page, @Query("pageSzie") int pageSzie);
+    Call<ZResponse<List<PostBean>>> getPostList(@Query("type") String type, @Query("class_id") Integer class_id, @Query("page") int page, @Query("pageSize") int pageSize);
 
     /**
-     * 帖子列表
+     * 帖子详情
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/circleDetail")
@@ -56,14 +64,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/cancelClick")
-    Call<ZResponse> dislike(@Query("createid") int createid);
+    Call<ZResponse> dislike(@Query("createid") int createid, @Query("coin") int coin);
 
-
-    /**
-     * 热门帖子列表
-     */
-    @Headers({"BaseUrl:zh"})
-    @POST("home/sport/remen")
-    Call<ZResponse> getHotPostList(@Query("page") int page, @Query("pageSzie") int pageSzie);
 
 }

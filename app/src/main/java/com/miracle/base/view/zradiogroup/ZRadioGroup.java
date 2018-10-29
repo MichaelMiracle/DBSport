@@ -17,7 +17,7 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
     private Context context;
     private ZRadioButton[] mChildren = new ZRadioButton[0];
     private Fragment[] mFragments;
-    private FragmentManager manager;
+    private FragmentManager fragmentManager;
 
     public ZRadioGroup(Context context) {
         this(context, null);
@@ -51,15 +51,25 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
     }
 
 
+    /**
+     * @param containerId
+     * @param fragments
+     * @Deprecated Use {@link #setUp(FragmentManager, int, Fragment...)} instead.
+     */
+    @Deprecated
     public void setupWithContainerAndFragments(int containerId, Fragment... fragments) {
         if (context instanceof AppCompatActivity) {
-            manager = ((AppCompatActivity) context).getSupportFragmentManager();
+            fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
         } else {
             throw new RuntimeException("For better performance,ZRadioGroup only support used in AppCompatActivity");
         }
-        mFragments = fragments;
+        setUp(fragmentManager, containerId, fragments);
+    }
 
-        FragmentTransaction tran = manager.beginTransaction();
+    public void setUp(FragmentManager manager, int containerId, Fragment... fragments) {
+        this.fragmentManager = manager;
+        mFragments = fragments;
+        FragmentTransaction tran = fragmentManager.beginTransaction();
         for (Fragment fragment : mFragments) {
             tran.add(containerId, fragment);
             tran.hide(fragment);
@@ -69,9 +79,7 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
         onFinishInflate();
         if (mChildren.length > 0)
             mChildren[0].performClick();
-
     }
-
 
     public void setCheck(int index) {
         mChildren[index].performClick();
@@ -82,8 +90,8 @@ public class ZRadioGroup extends LinearLayout implements ZRadioButton.OnCheckedC
     @Override
     public void onCheckedChange(ZRadioButton zRadioButton, int position, boolean isChecked) {
         if (isChecked) {
-            if (manager != null) {
-                FragmentTransaction tran = manager.beginTransaction();
+            if (fragmentManager != null) {
+                FragmentTransaction tran = fragmentManager.beginTransaction();
                 for (int i = 0; i < mFragments.length; i++) {
                     if (i == position) {
                         tran.show(mFragments[i]);

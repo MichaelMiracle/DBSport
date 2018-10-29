@@ -113,5 +113,5 @@ public abstract class PageLoadCallback<T> implements Callback<T>, SwipeRefreshLa
         requestAction(page, pageSize);
     }
 
-    public abstract void requestAction(int page, int limit);
+    public abstract void requestAction(int page, int pageSize);
 }

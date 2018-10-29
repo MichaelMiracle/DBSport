@@ -14,7 +14,7 @@
             android:background="@color/main_color"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="@dimen/adaptive_20dp">
+            android:padding="20dp">
 
             <com.miracle.base.view.CircleImageView
                 android:id="@+id/ivHeadImg"

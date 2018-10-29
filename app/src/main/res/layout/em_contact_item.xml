@@ -6,12 +6,12 @@
 
     <ImageView
         android:id="@+id/head_icon"
-        android:layout_width="@dimen/adaptive_44dp"
-        android:layout_height="@dimen/adaptive_62dp"
-        android:paddingBottom="@dimen/adaptive_9dp"
-        android:layout_marginLeft="@dimen/adaptive_12dp"
-        android:layout_marginRight="@dimen/adaptive_12dp"
-        android:paddingTop="@dimen/adaptive_9dp"/>
+        android:layout_width="44dp"
+        android:layout_height="62dp"
+        android:paddingBottom="9dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:paddingTop="9dp"/>
 
     <TextView
         android:id="@+id/name"
@@ -23,14 +23,14 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:textColor="#000"
-        android:textSize="@dimen/adaptive_18sp" />
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/checkbox"
-        android:layout_width="@dimen/adaptive_40dp"
-        android:layout_height="@dimen/adaptive_40dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/adaptive_12dp" />
+        android:layout_marginRight="12dp" />
 
 </RelativeLayout>

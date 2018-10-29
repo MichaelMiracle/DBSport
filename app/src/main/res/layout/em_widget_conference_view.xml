@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/adaptive_44dp"
+        android:layout_height="44dp"
         android:background="@drawable/em_conference_member_cover">
 
         <TextView
@@ -26,14 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/adaptive_12dp"
+            android:layout_marginLeft="12dp"
             android:textColor="#ffffff"
-            android:textSize="@dimen/adaptive_18sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/icon_mute"
-            android:layout_width="@dimen/adaptive_40dp"
-            android:layout_height="@dimen/adaptive_40dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="2dp"
@@ -42,8 +42,8 @@
 
         <ImageView
             android:id="@+id/icon_talking"
-            android:layout_width="@dimen/adaptive_40dp"
-            android:layout_height="@dimen/adaptive_40dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="2dp"
