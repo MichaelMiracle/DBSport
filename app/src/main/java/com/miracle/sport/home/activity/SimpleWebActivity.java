@@ -2,6 +2,7 @@ package com.miracle.sport.home.activity;
 
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -22,13 +23,20 @@ import com.miracle.databinding.ActivityHomeWebBinding;
 import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.ServiceHome;
+import com.miracle.sport.home.adapter.HomeCommentListAdapter;
+import com.miracle.sport.home.adapter.HomeListAdapter;
+import com.miracle.sport.home.bean.HomeBean;
+import com.miracle.sport.home.bean.HomeCommentBean;
 import com.wx.goodview.GoodView;
+
+import java.util.List;
 
 
 public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
     private int id;
     private GoodView goodView;
+    private HomeCommentListAdapter mAdapter;
 
 
     @Override
@@ -60,6 +68,9 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 //        settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
 
+        binding.recyclerView.setAdapter(mAdapter = new HomeCommentListAdapter(mContext));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+
 //        setContentView(webView);
 //        binding.webView.loadUrl(mUrl);
     }
@@ -76,6 +87,13 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             public void onSuccess(ZResponse<NewsDetailBean> data) {
                 binding.cbRight.setChecked(data.getData().getCoin() == 1);
                 binding.webView.loadDataWithBaseURL(null, CommonUtils.getHtmlData(data.getData().getContent()), "text/html", "utf-8", null);
+            }
+        });
+
+        ZClient.getService(SportService.class).getCommentList(id).enqueue(new ZCallback<ZResponse<List<HomeCommentBean>>>() {
+            @Override
+            public void onSuccess(ZResponse<List<HomeCommentBean>> data) {
+                mAdapter.setNewData(data.getData());
             }
         });
     }
@@ -109,6 +127,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
         });
 
         binding.ivGood.setOnClickListener(this);
+        binding.includeSendComment.imgSend.setOnClickListener(this);
     }
 
     private ZCallback<ZResponse> likeCallback = new ZCallback<ZResponse>() {
@@ -125,6 +144,14 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             case R.id.iv_good:
                 goodView.setTextInfo("+1", Color.parseColor("#f66467"), 14);
                 goodView.show(v);
+                break;
+            case R.id.img_send:
+                ZClient.getService(SportService.class).sendHomeCommet(id , binding.includeSendComment.etCommentContent.getText().toString()).enqueue(new ZCallback<ZResponse<String>>() {
+                    @Override
+                    public void onSuccess(ZResponse<String> data) {
+                        ToastUtil.toast("评论成功");
+                    }
+                });
                 break;
         }
 

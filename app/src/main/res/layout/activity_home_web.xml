@@ -64,9 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/titleBarRoot"
+            android:layout_above="@+id/include_send_comment"
             >
 
-            <ScrollView
+            <com.miracle.sport.home.view.MyScrollview
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
@@ -81,22 +82,42 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"
+                        android:layout_below="@+id/webView"
+                        >
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                    </RelativeLayout>
+
+
+
+
                     <ImageView
                         android:id="@+id/iv_good"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/defaule_img"
                         android:layout_below="@+id/webView"
+                        android:visibility="gone"
                         />
                 </RelativeLayout>
-            </ScrollView>
+            </com.miracle.sport.home.view.MyScrollview>
 
         </android.support.v4.widget.SwipeRefreshLayout>
         <include
+            android:id="@+id/include_send_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            layout="@layout/layout_editview"/>
+            layout="@layout/include_news_detail_tool_bar"/>
+            <!--layout="@layout/layout_editview"/>-->
     </RelativeLayout>
 
 </layout>
