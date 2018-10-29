@@ -58,4 +58,12 @@ public interface SportService {
     @POST("home/sport/cancelClick")
     Call<ZResponse> dislike(@Query("createid") int createid);
 
+
+    /**
+     * 热门帖子列表
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/remen")
+    Call<ZResponse> getHotPostList(@Query("page") int page, @Query("pageSzie") int pageSzie);
+
 }
