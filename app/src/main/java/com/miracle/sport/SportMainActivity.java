@@ -13,6 +13,7 @@ import com.miracle.michael.doudizhu.fragment.DDZF4;
 import com.miracle.michael.football.fragment.FootballF3;
 import com.miracle.sport.community.fragment.CommunityFragment;
 import com.miracle.sport.home.fragment.HomeFragment;
+import com.miracle.sport.schedule.fragment.FragClubeTypeChannelVP;
 
 /**
  * Created by Michael on 2018/10/27 13:32 (星期六)
@@ -26,7 +27,7 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
     @Override
     public void initView() {
         hideTitle();
-        binding.zRadiogroup.setupWithContainerAndFragments(R.id.container, new HomeFragment(), new DDZF2(), new CommunityFragment(), new DDZF4());
+        binding.zRadiogroup.setupWithContainerAndFragments(R.id.container, new HomeFragment(), new FragClubeTypeChannelVP(), new CommunityFragment(), new DDZF4());
     }
 
     @Override
