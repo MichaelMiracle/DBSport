@@ -43,4 +43,19 @@ public interface SportService {
     @POST("home/sport/sendCircle")
     Call<ZResponse> publishPost(@Query("class_id") int class_id);
 
+
+    /**
+     * 点赞
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/click")
+    Call<ZResponse> like(@Query("createid") int createid);
+
+    /**
+     * 点赞
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/cancelClick")
+    Call<ZResponse> dislike(@Query("createid") int createid);
+
 }
