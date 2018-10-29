@@ -18,9 +18,11 @@ import com.miracle.base.network.ZService;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.databinding.F4DdzBinding;
 import com.miracle.michael.doudizhu.activity.DDZMyCollectionsActivity;
+import com.wx.goodview.GoodView;
 
 public class DDZF4 extends BaseFragment<F4DdzBinding> {
     private UserInfoBean userInfo;
+    private GoodView goodView;
 
     @Override
     public int getLayout() {
@@ -30,6 +32,7 @@ public class DDZF4 extends BaseFragment<F4DdzBinding> {
     @Override
     public void initView() {
         binding.titleBar.showLeft(drawerLayout != null);
+        goodView = new GoodView(mContext);
     }
 
     private void reqData() {
