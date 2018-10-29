@@ -438,6 +438,9 @@
             android:name=".michael.doudizhu.activity.DDZMyCollectionsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.miracle.sport.schedule.activity.ClubeItemVPAct"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".sport.SportMainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
