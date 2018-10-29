@@ -1,5 +1,6 @@
 package com.miracle.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
@@ -23,6 +24,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
     protected Context mContext;
     protected B binding;
     protected ActivityBaseBinding mBaseBinding;
+    protected ProgressDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
         binding.getRoot().setLayoutParams(params);
         mBaseBinding.baseContainer.addView(binding.getRoot());
         getWindow().setContentView(mBaseBinding.getRoot());
+
+        loadingDialog = new ProgressDialog(mContext);
+        loadingDialog.setMessage("加载中...");
 
         //设置状态栏颜色
         Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.titlebar_color)).statusBarDarkFont();
@@ -115,6 +120,27 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
             Sofia.with(this).invasionStatusBar().statusBarBackgroundAlpha(0);
         } else {
             Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.white)).statusBarDarkFont();
+        }
+    }
+
+    public void showLoadingDialog(){
+        if(null != loadingDialog){
+            loadingDialog.show();
+        }
+    }
+
+    public void dismissLoadingDialog(){
+        if(null != loadingDialog){
+            loadingDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(null != loadingDialog){
+            loadingDialog.dismiss();
+            loadingDialog = null;
         }
     }
 }

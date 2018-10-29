@@ -31,6 +31,8 @@ import com.wx.goodview.GoodView;
 
 import java.util.List;
 
+import retrofit2.Call;
+
 
 public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
@@ -46,6 +48,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
     @Override
     public void initView() {
+        showLoadingDialog();
         hideTitle();
         binding.tvTitle.setText("详情");
         id = getIntent().getIntExtra("id", 0);
@@ -73,27 +76,40 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
 //        setContentView(webView);
 //        binding.webView.loadUrl(mUrl);
+        reqData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        reqData();
+
     }
 
     private void reqData() {
-        ZClient.getService(SportService.class).getNewsDetail(id).enqueue(new ZCallback<ZResponse<NewsDetailBean>>(binding.swipeRefreshLayout) {
+        ZClient.getService(SportService.class).getNewsDetail(id).enqueue(new ZCallback<ZResponse<NewsDetailBean>>() {
             @Override
             public void onSuccess(ZResponse<NewsDetailBean> data) {
                 binding.cbRight.setChecked(data.getData().getCoin() == 1);
                 binding.webView.loadDataWithBaseURL(null, CommonUtils.getHtmlData(data.getData().getContent()), "text/html", "utf-8", null);
+                reqCommentData();
             }
         });
 
-        ZClient.getService(SportService.class).getCommentList(id).enqueue(new ZCallback<ZResponse<List<HomeCommentBean>>>() {
+
+    }
+
+    private void reqCommentData(){
+        ZClient.getService(SportService.class).getCommentList(id).enqueue(new ZCallback<ZResponse<List<HomeCommentBean>>>(binding.swipeRefreshLayout) {
             @Override
             public void onSuccess(ZResponse<List<HomeCommentBean>> data) {
+                dismissLoadingDialog();
                 mAdapter.setNewData(data.getData());
+            }
+
+            @Override
+            public void onFailure(Call<ZResponse<List<HomeCommentBean>>> call, Throwable t) {
+                super.onFailure(call, t);
+                dismissLoadingDialog();
             }
         });
     }
@@ -146,12 +162,20 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
                 goodView.show(v);
                 break;
             case R.id.img_send:
-                ZClient.getService(SportService.class).sendHomeCommet(id , binding.includeSendComment.etCommentContent.getText().toString()).enqueue(new ZCallback<ZResponse<String>>() {
-                    @Override
-                    public void onSuccess(ZResponse<String> data) {
-                        ToastUtil.toast("评论成功");
-                    }
-                });
+                if(TextUtils.isEmpty(binding.includeSendComment.etCommentContent.getText())){
+                    ToastUtil.toast("内容不能空");
+                }else{
+                    ZClient.getService(SportService.class).sendHomeCommet(id , binding.includeSendComment.etCommentContent.getText().toString()).enqueue(new ZCallback<ZResponse<String>>() {
+                        @Override
+                        public void onSuccess(ZResponse<String> data) {
+                            ToastUtil.toast("评论成功");
+                            binding.includeSendComment.etCommentContent.setText("");
+                            CommonUtils.hideSoftInput(binding.includeSendComment.etCommentContent.getContext(),binding.includeSendComment.etCommentContent);
+                            reqCommentData();
+                        }
+                    });
+                }
+
                 break;
         }
 
