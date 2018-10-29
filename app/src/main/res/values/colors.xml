@@ -142,4 +142,11 @@
     <color name="gold">#FFD700</color>
     <color name="metal_grey">#9C9C9C</color>
     <color name="metal_grey_end">#E8E8E8</color>
+
+    <!--首页-->
+
+    <color name="color_222222">#222222</color>
+    <color name="color_d43d3d">#d43d3d</color>
+    <color name="color_e8e8e8">#e8e8e8</color>
+
 </resources>

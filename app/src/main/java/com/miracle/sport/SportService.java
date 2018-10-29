@@ -3,6 +3,8 @@ package com.miracle.sport;
 import com.miracle.base.network.ZResponse;
 import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.community.bean.PostBean;
+import com.miracle.sport.home.bean.ChannerlKey;
+import com.miracle.sport.home.bean.HomeBean;
 
 import java.util.List;
 
@@ -66,5 +68,26 @@ public interface SportService {
     @POST("home/sport/cancelClick")
     Call<ZResponse> dislike(@Query("createid") int createid, @Query("coin") int coin);
 
+
+
+    /**
+     * 首页title 类型
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/type")
+    Call<ZResponse<List<ChannerlKey>>> getSearchKeys();
+    /**
+     * 首页列表
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/sportlist")
+    Call<ZResponse<HomeBean>> getNewsList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
+    //    Call<ZResponse<List<Football>>> getNewsList(@Query("class_id") int class_id, @Query("page") int page, @Query("pageSize") int pageSize);
+    /**
+     * 列表详情
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/detail")
+    Call<ZResponse<NewsDetailBean>> getNewsDetail(@Query("id") int id);
 
 }

@@ -88,6 +88,10 @@ dependencies {
 
     implementation 'com.android.support:cardview-v7:26.1.0'
 
+    compile 'me.weyye.ColorTrackTabLayout:library:1.0.1'
+
+    compile 'com.wx.goodview:goodview:1.0.0'//点赞效果
+
 }
 // ADD THIS AT THE BOTTOM
 apply plugin: 'com.google.gms.google-services'
