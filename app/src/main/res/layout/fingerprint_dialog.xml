@@ -7,7 +7,7 @@
         android:gravity="center_horizontal"
         android:minWidth="330dp"
         android:orientation="vertical"
-        android:padding="@dimen/dp20">
+        android:padding="20dp">
 
         <com.miracle.base.view.IconFontTextView
             android:layout_width="wrap_content"
@@ -19,17 +19,17 @@
             android:id="@+id/tvTryAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="指纹识别"
-            android:textSize="@dimen/sp16"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvTip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="请将手指放至手机指纹识别区" />
 
@@ -37,11 +37,11 @@
             android:id="@+id/btCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp4"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/shape_base_btn"
-            android:paddingTop="@dimen/dp10"
-            android:paddingBottom="@dimen/dp10"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="@string/cancel"
             android:textColor="@color/main_text_color"
             android:textSize="16sp" />

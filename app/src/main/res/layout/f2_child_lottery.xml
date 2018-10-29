@@ -23,7 +23,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/base_button_hollow_bg"
-                    android:elevation="@dimen/dp10"
+                    android:elevation="10dp"
                     app:cardCornerRadius="4dp">
 
 
@@ -35,7 +35,7 @@
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
                         android:paddingRight="20dp"
-                        android:paddingBottom="@dimen/dp10"
+                        android:paddingBottom="10dp"
                         android:text="双色球"
                         android:textColor="@color/main_text_color"
                         android:textSize="18sp"

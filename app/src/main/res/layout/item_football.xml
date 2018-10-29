@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/dp5"
-    android:layout_marginTop="@dimen/dp10"
-    android:layout_marginRight="@dimen/dp5"
-    android:elevation="@dimen/dp10"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="5dp"
+    android:elevation="10dp"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/dp10">
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp10"
+            android:layout_margin="10dp"
             android:ellipsize="end"
             android:text="官方：前国足新闻官付强离开华夏幸福公司"
             android:textColor="@color/main_text_color"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|right"
-            android:paddingRight="@dimen/dp10"
+            android:paddingRight="10dp"
             android:text="2017/12/11"
             android:textColor="@color/main_text_color" />
 

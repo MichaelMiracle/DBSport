@@ -5,12 +5,12 @@
         android:id="@+id/itemBarRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/base_gradient"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <com.miracle.base.view.IconFontTextView

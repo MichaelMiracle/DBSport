@@ -8,10 +8,10 @@
         android:background="@drawable/base_gradient"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:minHeight="@dimen/dp40"
+        android:minHeight="40dp"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <com.miracle.base.view.IconFontTextView
