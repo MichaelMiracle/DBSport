@@ -59,7 +59,7 @@ public class DDZF2Child extends BaseFragment<F2ChildFootballBinding> {
                 ZClient.getService(ZService.class).getDDZNewsList(reqKey, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

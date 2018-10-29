@@ -50,7 +50,7 @@ public class LotteryF3Child extends BaseFragment<F3ChildLotteryBinding> {
                 ZClient.getService(ZService.class).getLotteryResultList(reqKey, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
 

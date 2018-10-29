@@ -35,7 +35,7 @@ public abstract class PageLoadDataCallback<T> implements Callback<T>, SwipeRefre
         mAdapter = adapter;
     }
 
-    public void setSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
+    public void initSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
         swipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout = swipeRefreshLayout;
     }

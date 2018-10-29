@@ -43,6 +43,7 @@ public class LatestPostFragment extends BaseFragment<RecyclerBinding> {
                 ZClient.getService(SportService.class).getPostList(null, null, page, pageSize).enqueue(callBack);
             }
         };
+        callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
     }
 
     @Override

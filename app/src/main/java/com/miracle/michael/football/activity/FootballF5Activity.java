@@ -50,7 +50,7 @@ public class FootballF5Activity extends BaseActivity<SwipeRecyclerBinding> {
                     ZClient.getService(ZService.class).getFootballNewsList(bean.getReqKey(), page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

@@ -96,7 +96,7 @@ public class DDZF1 extends BaseFragment<F1DdzBinding> {
                 ZClient.getService(ZService.class).getDDZNewsList(11, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
 

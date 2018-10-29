@@ -39,7 +39,7 @@ public class DDZMyCollectionsActivity extends BaseActivity<SwipeRecyclerBinding>
                 ZClient.getService(ZService.class).getMycollections(AppConfig.APP_TYPE, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

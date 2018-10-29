@@ -60,7 +60,7 @@ public class FragClubePost extends HandleFragment<FragClubePostBinding> {
                 ZClient.getService(FootClubServer.class).getFootClubPost(parentType.getId(),req.getType(),page,limit).enqueue(this);
             }
         };
-        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 
         callback.onRefresh();
     }

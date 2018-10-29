@@ -81,7 +81,7 @@ public class FootballF3 extends BaseFragment<F3FootballBinding> {
                 ZClient.getService(ZService.class).getFootballBabyAlbums(page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     private void reqData() {

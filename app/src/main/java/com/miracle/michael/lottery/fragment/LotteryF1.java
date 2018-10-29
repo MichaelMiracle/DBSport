@@ -96,7 +96,7 @@ public class LotteryF1 extends BaseFragment<F1LotteryBinding> {
                 ZClient.getService(ZService.class).getLotteryNewslList("cp", "wycp", page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
 

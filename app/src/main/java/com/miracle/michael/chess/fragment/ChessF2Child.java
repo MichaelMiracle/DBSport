@@ -53,7 +53,7 @@ public class ChessF2Child extends BaseFragment<F2ChildChessBinding> {
                 ZClient.getService(ZService.class).getChessNewsList(reqKey, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
 

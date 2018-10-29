@@ -93,7 +93,7 @@ public class ChessF1 extends BaseFragment<F1ChessBinding> {
                 ZClient.getService(ZService.class).getChessNewsList(7, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
 

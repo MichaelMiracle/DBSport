@@ -117,7 +117,7 @@ public class FootballF1 extends BaseFragment<F1FootballBinding> {
                 ZClient.getService(ZService.class).getFootballNewsList("kx", page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

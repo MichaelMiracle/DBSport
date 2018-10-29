@@ -78,4 +78,8 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     public void onClick(View v) {
 
     }
+
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return binding.swipeRefreshLayout;
+    }
 }

@@ -63,7 +63,7 @@ public class ChannelHomeFragment extends BaseFragment<FragmentCategoryHomeBindin
                 ZClient.getService(SportService.class).getNewsList(reqKey, page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

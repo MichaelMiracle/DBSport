@@ -38,7 +38,7 @@ public class FootballSaiShiFenXiActivity extends BaseActivity<SwipeRecyclerBindi
                 ZClient.getService(ZService.class).getFootballNewsList("zqbfyc", page, limit).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
     }
 
     @Override

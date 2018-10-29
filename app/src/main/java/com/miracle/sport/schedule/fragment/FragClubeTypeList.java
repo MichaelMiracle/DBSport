@@ -46,7 +46,7 @@ public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
                 ZClient.getService(FootClubServer.class).getFootClubTypes(page, limit).enqueue(this);
             }
         };
-        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 
         callback.onRefresh();
     }

@@ -116,7 +116,7 @@
 //                ZClient.getService(FootClubServer.class).getFootClubTypes(page, limit).enqueue(callback);
 //            }
 //        };
-//        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+//        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 //
 //        layoutManager = new LinearLayoutManager(mContext);
 ////        layoutManager.setGravity(HiveLayoutManager.ALIGN_LEFT);

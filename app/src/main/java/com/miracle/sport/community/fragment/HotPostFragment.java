@@ -14,6 +14,8 @@ import com.miracle.base.BaseFragment;
 import com.miracle.sport.SportService;
 import com.miracle.sport.community.adapter.PostListAdapter;
 
+import retrofit2.Call;
+
 /**
  * Created by Michael on 2018/10/29 14:07 (星期一)
  */
@@ -45,6 +47,7 @@ public class HotPostFragment extends BaseFragment<RecyclerBinding> {
                 ZClient.getService(SportService.class).getPostList("rm", null, page, pageSize).enqueue(callBack);
             }
         };
+        callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
     }
 
     @Override
