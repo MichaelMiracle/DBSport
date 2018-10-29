@@ -52,7 +52,7 @@ public interface SportService {
     Call<ZResponse> like(@Query("createid") int createid);
 
     /**
-     * 点赞
+     * 取消点赞
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/cancelClick")
