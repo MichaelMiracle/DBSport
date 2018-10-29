@@ -1,5 +1,6 @@
 package com.miracle.sport.schedule.fragment;
 
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -26,7 +27,10 @@ public class FragClubeTypeChannelVP extends BaseFragment<FragClubetypeVpBinding>
         binding.tablayout1.setTabMode(TabLayout.MODE_SCROLLABLE);
         channelAdapter = new ClubeTypeChannelAdapter(supportFm);
         channelAdapter.setData(FragClubeTypeList.class,"赛程");
-//        tabAdapter.setData(FragClubeTypeList.class,"熱門2");
+        channelAdapter.setData(FragClubePostSSAndHot.class,"熱門");
+        Message hotMsg = new Message();
+        hotMsg.what = 2;
+        channelAdapter.setMsg(FragClubePostSSAndHot.class, hotMsg);
         binding.viewpager1.setAdapter(channelAdapter);
     }
 

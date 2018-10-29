@@ -17,6 +17,7 @@ import com.miracle.sport.schedule.net.FootClubServer;
 
 import java.util.List;
 
+//赛事 tab
 public class FragClubeItemVP extends HandleFragment<FragClubeitmeVpBinding> {
     public static final int MSG_REQDATA_WAHT = 1;
 

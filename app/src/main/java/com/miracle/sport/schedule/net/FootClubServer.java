@@ -5,6 +5,8 @@ import com.miracle.sport.schedule.bean.ClubeHotPost;
 import com.miracle.sport.schedule.bean.ClubeItem;
 import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.bean.post.ClubePostJF;
+import com.miracle.sport.schedule.bean.post.ClubePostSC;
+import com.miracle.sport.schedule.bean.post.ClubePostSS;
 
 import java.util.List;
 
@@ -44,10 +46,20 @@ public interface FootClubServer {
 
     @Headers({"BaseUrl:zh"})
     @POST("home/club/detailList")  //ClubeType.id   ,    ClubeItem.type
-    Call<ZResponse<List<ClubePostJF>>> getFootClubPost(@Query("class_id") int class_id, @Query("module") String module, @Query("page") int page, @Query("pageSize") int pageSize);
+    Call<ZResponse<List<ClubePostJF>>> getFootClubPostJF(@Query("class_id") int class_id, @Query("module") String module, @Query("page") int page, @Query("pageSize") int pageSize);
+
+    @Headers({"BaseUrl:zh"})
+    @POST("home/club/detailList")  //ClubeType.id   ,    ClubeItem.type
+    Call<ZResponse<List<ClubePostSS>>> getFootClubPostSS(@Query("class_id") int class_id, @Query("module") String module, @Query("page") int page, @Query("pageSize") int pageSize);
+
+    @Headers({"BaseUrl:zh"})
+    @POST("home/club/detailList")  //ClubeType.id   ,    ClubeItem.type
+    Call<ZResponse<List<ClubePostSC>>> getFootClubPostSC(@Query("class_id") int class_id, @Query("module") String module, @Query("page") int page, @Query("pageSize") int pageSize);
+
+
 
     //热门
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/remen")
-    Call<ZResponse<List<ClubeHotPost>>> getFootClubTypesHot(@Query("page") int page, @Query("pageSize") int pageSize);
+    Call<ZResponse<List<ClubePostSS>>> getFootClubTypesHot(@Query("page") int page, @Query("pageSize") int pageSize);
 }

@@ -25,6 +25,7 @@ public class ClubeItemVPAct extends BaseActivity {
             reqId = getIntent().getIntExtra(EXTRA_ID,-1);
             reqName = getIntent().getExtras().getString(EXTRA_NAME);
         }
+        setTitle(reqName);
         FragClubeItemVP frag_clube_itemvp_frag = (FragClubeItemVP) getSupportFragmentManager().findFragmentById(R.id.frag_clube_itemvp_frag);
         Message msg = new Message();
         msg.what = FragClubeItemVP.MSG_REQDATA_WAHT;

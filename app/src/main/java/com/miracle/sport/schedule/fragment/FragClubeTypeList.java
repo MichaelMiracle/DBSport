@@ -14,7 +14,9 @@ import com.miracle.sport.schedule.activity.ClubeItemVPAct;
 import com.miracle.sport.schedule.adapter.ClubeTypeAdapter;
 import com.miracle.sport.schedule.net.FootClubServer;
 
-//賽事  FragClubetypeListBinding
+import retrofit2.Call;
+
+//賽事 list
 public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
     PageLoadCallback callback;
     ClubeTypeAdapter clubTypeAdapter;
@@ -45,6 +47,12 @@ public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
             public void requestAction(int page, int limit) {
                 ZClient.getService(FootClubServer.class).getFootClubTypes(page, limit).enqueue(this);
             }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                setUIStatus(ShowStat.ERR);
+            }
         };
         callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 
@@ -59,5 +67,17 @@ public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onErrClick() {
+        setUIStatus(ShowStat.LOADING);
+        callback.onRefresh();
+    }
+
+    @Override
+    protected void onNodataClick() {
+        setUIStatus(ShowStat.LOADING);
+        callback.onRefresh();
     }
 }

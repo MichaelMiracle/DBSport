@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.bean.ClubeItem;
-import com.miracle.sport.schedule.fragment.FragClubePost;
+import com.miracle.sport.schedule.fragment.FragClubePostSSAndHot;
+import com.miracle.sport.schedule.fragment.FragClubePostJF;
+import com.miracle.sport.schedule.fragment.FragClubePostSC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +40,26 @@ public class ClubeItemTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        //根据赛事item 的type 返回各自的 fragment（服务器返回的数据类型不同）
         ClubeItem item = datas.get(position);
-
-        FragClubePost frag = new FragClubePost();
-        frag.setParentType(parentType);
-        frag.setReq(item);
+        Fragment frag = null;
+        if(item.getType().equalsIgnoreCase(ClubeItem.TYPE_JF)){
+            FragClubePostJF frag1 = new FragClubePostJF();
+            frag1.setParentType(parentType);
+            frag1.setReq(item);
+            frag = frag1;
+        }else if(item.getType().equalsIgnoreCase(ClubeItem.TYPE_SS) || item.getType().equalsIgnoreCase(ClubeItem.TYPE_ZG)){
+            FragClubePostSSAndHot frag1 = new FragClubePostSSAndHot();
+            frag1.setParentType(parentType);
+            frag1.setReq(item);
+//            frag1.reqData();
+            frag = frag1;
+        }else{
+            FragClubePostSC frag1 = new FragClubePostSC();
+            frag1.setParentType(parentType);
+            frag1.setReq(item);
+            frag = frag1;
+        }
         return frag;
     }
 

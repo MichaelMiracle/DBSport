@@ -21,9 +21,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    app:tabTextColor="#000"
+
+                    app:tabGravity="center"
+                    app:tabMode="scrollable"
+                    android:textSize="16sp"
+
+                    app:tabTextColor="#444"
                     app:tabSelectedTextColor="@color/colorPrimary"
-                    app:tabIndicatorColor="@color/colorPrimaryDark"
+                    app:tabIndicatorColor="@color/colorPrimary"
                     />
             </RelativeLayout>
 

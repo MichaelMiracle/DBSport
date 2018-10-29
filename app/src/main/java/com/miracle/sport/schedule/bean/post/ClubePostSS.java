@@ -1,6 +1,6 @@
 package com.miracle.sport.schedule.bean.post;
-
-public class ClubePostSS extends ClubePostJF {
+//赛事
+public class ClubePostSS {
 
     /**
      * id : 839

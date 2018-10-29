@@ -7,7 +7,7 @@
 //import com.miracle.base.network.PageLoadCallback;
 //import com.miracle.base.network.ZClient;
 //import com.miracle.databinding.FragClubetypeListBinding;
-//import com.miracle.sport.schedule.adapter.ClubePostAdapter;
+//import com.miracle.sport.schedule.adapter.ClubePostSSAdapter;
 //import com.miracle.sport.schedule.bean.ClubeItem;
 //import com.miracle.sport.schedule.bean.ClubeType;
 //import com.miracle.sport.schedule.net.FootClubServer;
@@ -16,7 +16,7 @@
 //    ClubeItem req;
 //    ClubeType parentType;
 //    PageLoadCallback callback;
-//    ClubePostAdapter adapter;
+//    ClubePostSSAdapter adapter;
 //
 //    public ClubeType getParentType() {
 //        return parentType;

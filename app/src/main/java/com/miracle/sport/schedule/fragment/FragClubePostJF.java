@@ -8,17 +8,17 @@ import com.miracle.R;
 import com.miracle.base.network.PageLoadCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.databinding.FragClubePostBinding;
-import com.miracle.sport.schedule.adapter.ClubePostAdapter;
+import com.miracle.sport.schedule.adapter.ClubePostJFAdapter;
 import com.miracle.sport.schedule.bean.ClubeItem;
 import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.net.FootClubServer;
 
 //赛事比分内容
-public class FragClubePost extends HandleFragment<FragClubePostBinding> {
+public class FragClubePostJF extends HandleFragment<FragClubePostBinding> {
     ClubeItem req;
     ClubeType parentType;
     PageLoadCallback callback;
-    ClubePostAdapter adapter;
+    ClubePostJFAdapter adapter;
 
     public ClubeType getParentType() {
         return parentType;
@@ -38,7 +38,7 @@ public class FragClubePost extends HandleFragment<FragClubePostBinding> {
 
     @Override
     public void onHandleMessage(Message msg) {
-        if(msg.what == 1)
+        if (msg.what == 1)
             callback.onRefresh();
     }
 
@@ -49,18 +49,20 @@ public class FragClubePost extends HandleFragment<FragClubePostBinding> {
 
     @Override
     public void initView() {
-        adapter = new ClubePostAdapter(mContext);
+        adapter = new ClubePostJFAdapter(mContext);
+        View head = getLayoutInflater().inflate(R.layout.club_post_head_jf, null);
+        adapter.addHeaderView(head);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         binding.recyclerView.setHasFixedSize(true);
 
-        callback = new PageLoadCallback(adapter ,binding.recyclerView) {
+        callback = new PageLoadCallback(adapter, binding.recyclerView) {
             @Override
             public void requestAction(int page, int limit) {
-                ZClient.getService(FootClubServer.class).getFootClubPost(parentType.getId(),req.getType(),page,limit).enqueue(this);
+                ZClient.getService(FootClubServer.class).getFootClubPostJF(parentType.getId(), req.getType(), page, limit).enqueue(this);
             }
         };
-        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
 
         callback.onRefresh();
     }
@@ -75,7 +77,7 @@ public class FragClubePost extends HandleFragment<FragClubePostBinding> {
 
     }
 
-    public void reqData(){
+    public void reqData() {
         uiHandler.sendEmptyMessage(1);
     }
 
