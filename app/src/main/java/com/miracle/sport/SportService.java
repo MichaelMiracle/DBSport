@@ -2,6 +2,7 @@ package com.miracle.sport;
 
 import com.miracle.base.network.ZResponse;
 import com.miracle.michael.common.bean.NewsDetailBean;
+import com.miracle.sport.community.bean.CircleBean;
 import com.miracle.sport.community.bean.PostBean;
 import com.miracle.sport.home.bean.ChannerlKey;
 import com.miracle.sport.home.bean.HomeBean;
@@ -56,7 +57,7 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @Multipart
     @POST("home/sport/sendCircle")
-    Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("content") String content, @Part() MultipartBody.Part imgs);
+    Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("title") String title, @Query("content") String content, @Part() List<MultipartBody.Part> imgs);
 
 
     /**
@@ -130,7 +131,11 @@ public interface SportService {
     @POST("home/sport/myCircle")
     Call<ZResponse<List<HomeCommentBean>>> getMyCircleList();
 
-
-
+    /**
+     * 圈子列表
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/circleType")
+    Call<ZResponse<List<CircleBean>>> getCircleList();
 
 }
