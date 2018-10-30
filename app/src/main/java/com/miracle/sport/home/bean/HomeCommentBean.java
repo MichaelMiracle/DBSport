@@ -10,6 +10,10 @@ public class HomeCommentBean implements Serializable {
     private String content;
     private String add_time;
     private String img;
+    private int click_num;
+    private int click;
+
+    private int comment_num;
 
     public int getComment_id() {
         return comment_id;
@@ -57,5 +61,29 @@ public class HomeCommentBean implements Serializable {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public int getClick_num() {
+        return click_num;
+    }
+
+    public void setClick_num(int click_num) {
+        this.click_num = click_num;
+    }
+
+    public int getComment_num() {
+        return comment_num;
+    }
+
+    public void setComment_num(int comment_num) {
+        this.comment_num = comment_num;
+    }
+
+    public int getClick() {
+        return click;
+    }
+
+    public void setClick(int click) {
+        this.click = click;
     }
 }

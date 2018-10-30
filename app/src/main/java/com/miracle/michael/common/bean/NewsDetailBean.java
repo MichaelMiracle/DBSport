@@ -10,9 +10,9 @@ public class NewsDetailBean {
      * title : 2015WPT中国赛6人决赛桌诞生 张伟成为最大泡沫
      * class_id : 1
      * content :
-     <div class="text clear" id="contentText">
-     <div itemprop="articleBody"><div align="left">
-     <div align="center"><img src="http://photocdn.sohu.com/20151102/Img424930807.png" alt="2015WPT中国赛9人决赛桌，1号位 蔡世杰，2号位 孙树，3号位 李超，4号位 金文龙，5号位 金鑫，6号位 王城新，7号位 张伟，8号位
+     * <div class="text clear" id="contentText">
+     * <div itemprop="articleBody"><div align="left">
+     * <div align="center"><img src="http://photocdn.sohu.com/20151102/Img424930807.png" alt="2015WPT中国赛9人决赛桌，1号位 蔡世杰，2号位 孙树，3号位 李超，4号位 金文龙，5号位 金鑫，6号位 王城新，7号位 张伟，8号位
      * author : 搜狐棋牌
      * time : 2015-11-02 11:08:49
      * thumb : http://photocdn.sohu.com/20151102/Img424930807.png
@@ -27,6 +27,10 @@ public class NewsDetailBean {
     private String time;
     private String thumb;
     private int coin;
+
+    private int click_num;
+    private int comment_num;
+    private int click;
 
     public int getId() {
         return id;
@@ -90,5 +94,33 @@ public class NewsDetailBean {
 
     public void setCion(int coin) {
         this.coin = coin;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+    public int getClick_num() {
+        return click_num;
+    }
+
+    public void setClick_num(int click_num) {
+        this.click_num = click_num;
+    }
+
+    public int getComment_num() {
+        return comment_num;
+    }
+
+    public void setComment_num(int comment_num) {
+        this.comment_num = comment_num;
+    }
+
+    public int getClick() {
+        return click;
+    }
+
+    public void setClick(int click) {
+        this.click = click;
     }
 }

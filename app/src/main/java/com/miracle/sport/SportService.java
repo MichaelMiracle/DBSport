@@ -98,6 +98,13 @@ public interface SportService {
     Call<ZResponse<NewsDetailBean>> getNewsDetail(@Query("id") int id);
 
     /**
+     * 评论点赞
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/click")
+    Call<ZResponse<String>> setClickClass(@Query("createid") int createid,@Query("click") int click,@Query("type") String type);
+
+    /**
      * 发评论
      */
     @Headers({"BaseUrl:zh"})

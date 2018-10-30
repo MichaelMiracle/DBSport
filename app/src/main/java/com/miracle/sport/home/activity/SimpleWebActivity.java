@@ -9,6 +9,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
 import com.miracle.base.BaseActivity;
 import com.miracle.base.GOTO;
@@ -39,6 +40,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
     private int id;
     private GoodView goodView;
     private HomeCommentListAdapter mAdapter;
+    private NewsDetailBean newsDetailBean;
 
 
     @Override
@@ -91,6 +93,13 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             public void onSuccess(ZResponse<NewsDetailBean> data) {
                 binding.cbRight.setChecked(data.getData().getCoin() == 1);
                 binding.webView.loadDataWithBaseURL(null, CommonUtils.getHtmlData(data.getData().getContent()), "text/html", "utf-8", null);
+                binding.includeSendComment.tvCommentCount.setText(data.getData().getComment_num()+"");
+                 newsDetailBean= data.getData();
+                if(1 == data.getData().getClick()){
+                    binding.includeSendComment.commentClick.setImageResource(R.mipmap.good_checked_big);
+                }else{
+                    binding.includeSendComment.commentClick.setImageResource(R.mipmap.good_big);
+                }
                 reqCommentData();
             }
         });
@@ -110,6 +119,31 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             public void onFailure(Call<ZResponse<List<HomeCommentBean>>> call, Throwable t) {
                 super.onFailure(call, t);
                 dismissLoadingDialog();
+            }
+        });
+    }
+
+    private void reqClick(final int position){
+        ZClient.getService(SportService.class).setClickClass(mAdapter.getItem(position).getComment_id(),1,"pl").enqueue(new ZCallback<ZResponse<String>>() {
+            @Override
+            public void onSuccess(ZResponse<String> data) {
+               int clickNum = mAdapter.getItem(position).getClick_num();
+                mAdapter.getItem(position).setClick_num(clickNum+1);
+                mAdapter.getItem(position).setClick(1);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void  reqClassClick(){
+        ZClient.getService(SportService.class).setClickClass(id,1,"").enqueue(new ZCallback<ZResponse<String>>() {
+            @Override
+            public void onSuccess(ZResponse<String> data) {
+                goodView.setImage(getResources().getDrawable(R.mipmap.good_checked_big));
+//                goodView.setText("+1");
+                goodView.show(binding.includeSendComment.commentClick);
+                newsDetailBean.setClick(1);
+                binding.includeSendComment.commentClick.setImageResource(R.mipmap.good_checked_big);
             }
         });
     }
@@ -144,6 +178,32 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
         binding.ivGood.setOnClickListener(this);
         binding.includeSendComment.imgSend.setOnClickListener(this);
+
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if(0 == mAdapter.getItem(position).getClick()){
+                    goodView.setImage(getResources().getDrawable(R.mipmap.good_checked));
+//                goodView.setText("+1");
+                    goodView.show(view);
+                    reqClick(position);
+                }else{
+                    ToastUtil.toast("已给评论点过赞");
+                }
+            }
+        });
+
+        binding.includeSendComment.commentClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(1 == newsDetailBean.getClick()){
+                   ToastUtil.toast("已给文章点过赞");
+               }else{
+                   reqClassClick();
+               }
+            }
+        });
+
     }
 
     private ZCallback<ZResponse> likeCallback = new ZCallback<ZResponse>() {

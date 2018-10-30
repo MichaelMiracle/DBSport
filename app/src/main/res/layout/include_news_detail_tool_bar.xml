@@ -89,13 +89,14 @@
         </FrameLayout>
 
         <ImageView
+            android:id="@+id/comment_click"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="2"
             android:paddingLeft="5dip"
             android:scaleType="center"
-            android:src="@mipmap/new_love_tabbar"/>
+            android:src="@mipmap/good_big"/>
 
         <ImageView
             android:id="@+id/img_send"

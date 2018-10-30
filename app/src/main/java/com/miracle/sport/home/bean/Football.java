@@ -29,6 +29,9 @@ public class Football {
     private String addTime;
     private String class_id;
     private String[] images;
+    private int click_num;
+    private int comment_num;
+
 
     public int getId() {
         return id;
@@ -124,5 +127,21 @@ public class Football {
 
     public void setImages(String[] images) {
         this.images = images;
+    }
+
+    public int getClick_num() {
+        return click_num;
+    }
+
+    public void setClick_num(int click_num) {
+        this.click_num = click_num;
+    }
+
+    public int getComment_num() {
+        return comment_num;
+    }
+
+    public void setComment_num(int comment_num) {
+        this.comment_num = comment_num;
     }
 }

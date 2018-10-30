@@ -127,6 +127,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/im_comment_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
+            android:text="6"
+            android:drawableLeft="@mipmap/eye_open"
+            android:drawablePadding="5dp"
+            android:paddingRight="16dp"
+            />
+
+        <TextView
+            android:id="@+id/im_click_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/good"
+            android:text="600"
+            android:drawablePadding="5dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
         <TextView

@@ -9,7 +9,10 @@ import com.miracle.R;
 import com.miracle.base.adapter.RecyclerViewAdapter;
 import com.miracle.base.network.GlideApp;
 import com.miracle.base.util.CommonUtils;
+import com.miracle.base.util.TimeUtils;
 import com.miracle.sport.home.bean.Football;
+
+import java.text.ParseException;
 
 public class HomeListAdapter extends RecyclerViewAdapter<Football> {
     private Context context;
@@ -22,8 +25,16 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
     @Override
     protected void convert(BaseViewHolder helper, Football item) {
         helper.setText(R.id.tvTitle, item.getTitle().replace("微信",""));
+//        try {
+//            Long longTime = TimeUtils.stringToLong(item.getTime(),"yyyy-MM-dd HH:mm:ss");
+//            helper.setText(R.id.tvTime, TimeUtils.getShortTime(longTime));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         helper.setText(R.id.tvTime, item.getTime());
         helper.setText(R.id.tvAuthor,CommonUtils.getAppName(context));
+        helper.setText(R.id.im_comment_num ,item.getComment_num()+"");
+        helper.setText(R.id.im_click_num ,item.getClick_num()+"");
 //        Glide.with(context)
 //                .load(item.getThumb())
 //                .into((ImageView) helper.getView(R.id.iv));

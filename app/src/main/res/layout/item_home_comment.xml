@@ -37,6 +37,17 @@
         android:textSize="16sp" />
 
 
+        <TextView
+            android:id="@+id/im_click_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/good"
+            android:text="600"
+            android:gravity="center"
+            android:drawablePadding="5dp"
+            />
+
+
 
 
 
