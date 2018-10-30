@@ -81,7 +81,12 @@
         <activity
             android:name=".base.switcher.WelcomeActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".michael.common.activity.RegisterActivity"
@@ -443,12 +448,7 @@
         <activity
             android:name=".sport.SportMainActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".sport.home.activity.SimpleWebActivity"
             android:launchMode="singleTask"
@@ -457,6 +457,12 @@
             >
         </activity>
         <activity android:name=".sport.community.activity.PublishPostActivity" />
+        <!--我的发帖-->
+        <activity android:name=".sport.me.activity.DDZMyPostActivity" />
+        <!--我的回帖-->
+        <activity android:name=".sport.me.activity.DDZMyReplyActivity" />
+        <!--我的圈子-->
+        <activity android:name=".sport.me.activity.DDZMyCircleActivity" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

@@ -9,7 +9,7 @@ public class AppConfig {
     public static String groupId;
 
     //1(足球) 2(彩票) 3(棋牌,斗地主) 4(生活)
-    public static String APP_TYPE = "3";
+    public static String APP_TYPE = "1";
     static Class mainClass = SportMainActivity.class;
 
 

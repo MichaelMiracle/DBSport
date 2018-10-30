@@ -114,8 +114,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
         }
         
 		setContentView(R.layout.em_activity_group_details);
-		getWindow().getDecorView().setBackgroundColor(getResources().getColor(com.hyphenate.easeui.R.color.main_bg_color));
-		Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
+//		getWindow().getDecorView().setBackgroundColor(getResources().getColor(com.hyphenate.easeui.R.color.main_bg_color));
+//		Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
 
 		instance = this;
 		st = getResources().getString(R.string.people);

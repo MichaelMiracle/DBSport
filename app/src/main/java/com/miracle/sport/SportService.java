@@ -9,9 +9,12 @@ import com.miracle.sport.home.bean.HomeCommentBean;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -51,8 +54,9 @@ public interface SportService {
      * 发帖
      */
     @Headers({"BaseUrl:zh"})
+    @Multipart
     @POST("home/sport/sendCircle")
-    Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("content") String content);
+    Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("content") String content, @Part() MultipartBody.Part imgs);
 
 
     /**
@@ -97,7 +101,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/sendComment")
-    Call<ZResponse<String>> sendHomeCommet( @Query("createid") int createid ,@Query("content") String content);
+    Call<ZResponse<String>> sendHomeCommet(@Query("createid") int createid, @Query("content") String content);
 
     /**
      * 获取评论列表
@@ -105,5 +109,28 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/sportComment")
     Call<ZResponse<List<HomeCommentBean>>> getCommentList(@Query("createid") int createid);
+
+
+    /**
+     * 我的发帖
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myPost")
+    Call<ZResponse<List<HomeCommentBean>>> getPostList();
+    /**
+     * 我的回帖
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myReply")
+    Call<ZResponse<List<HomeCommentBean>>> getReplyList();
+    /**
+     * 我的圈子
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myCircle")
+    Call<ZResponse<List<HomeCommentBean>>> getMyCircleList();
+
+
+
 
 }

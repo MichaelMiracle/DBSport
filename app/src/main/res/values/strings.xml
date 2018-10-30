@@ -28,6 +28,10 @@
     <string name="icon_fingerprint">&#xe648;</string>
     <string name="icon_football_baby">&#xe602;</string>
     <string name="icon_close">&#xe626;</string>
+    <!--点赞-->
+    <string name="icon_like">&#xe605;</string>
+    <!--评论-->
+    <string name="icon_comment">&#xe643;</string>
     <!--奖杯-->
     <string name="icon_cup">&#xe604;</string>
     <!--社区-->

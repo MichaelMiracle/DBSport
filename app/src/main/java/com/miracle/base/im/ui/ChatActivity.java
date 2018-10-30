@@ -23,7 +23,7 @@ public class ChatActivity extends BaseActivity{
         super.onCreate(arg0);
         setContentView(R.layout.em_activity_chat);
         getWindow().getDecorView().setBackgroundColor(getResources().getColor(com.hyphenate.easeui.R.color.main_bg_color));
-        Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
+//        Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
 
         activityInstance = this;
         //get user id or group id

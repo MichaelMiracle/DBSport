@@ -6,11 +6,11 @@
         <!--colorPrimary 应用的主要色调，actionBar默认使用该颜色，Toolbar导航栏的底色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--colorPrimaryDark 应用的主要暗色调，statusBarColor默认使用该颜色-->
-        <item name="colorPrimaryDark">@color/titlebar_color</item>
+        <item name="colorPrimaryDark">@color/main_color</item>
         <!--windowBackground 窗口背景颜色-->
         <item name="android:windowBackground">@color/main_bg_color</item>
         <!--colorAccent CheckBox，RadioButton，SwitchCompat等一般控件的选中效果默认采用该颜色-->
-        <item name="colorAccent">@color/zradiobutton_checked</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!--statusBarColor 状态栏颜色，默认使用colorPrimaryDark-->
         <!--navigationBarColor 底部栏颜色-->
         <!--colorForeground 应用的前景色，ListView的分割线，switch滑动区默认使用该颜色-->

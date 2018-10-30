@@ -73,20 +73,24 @@
             <com.miracle.base.view.IconFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/icon_community" />
+                android:text="@string/icon_like"
+                android:textColor="@color/main_color_grey" />
 
             <TextView
                 android:id="@+id/tvLike"
+                android:paddingLeft="@dimen/dp_4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dp_10" />
 
             <com.miracle.base.view.IconFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/icon_community" />
+                android:text="@string/icon_comment" />
 
             <TextView
                 android:id="@+id/tvComment"
+                android:paddingLeft="@dimen/dp_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
