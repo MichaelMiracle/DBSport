@@ -117,6 +117,8 @@ public abstract class PageLoadCallback<T> implements Callback<T>, SwipeRefreshLa
 
     @Override
     public void onRefresh() {
+        if(mSwipeRefreshLayout != null && !mSwipeRefreshLayout.isRefreshing())
+            mSwipeRefreshLayout.setRefreshing(true);
 //        if (!NetStateUtils.isNetworkConnected(App.getApp())) {
 //            ToastUtil.toast(App.getApp(), CommonUtils.getString(R.string.no_net));
 //            mSwipeRefreshLayout.setRefreshing(false);
