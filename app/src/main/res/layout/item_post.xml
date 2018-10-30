@@ -23,7 +23,8 @@
                 android:layout_height="16sp"
                 android:layout_marginRight="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/defaule_img" />
+                android:src="@mipmap/defaule_img"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCircleName"
@@ -78,9 +79,9 @@
 
             <TextView
                 android:id="@+id/tvLike"
-                android:paddingLeft="@dimen/dp_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_4"
                 android:paddingRight="@dimen/dp_10" />
 
             <com.miracle.base.view.IconFontTextView
@@ -90,9 +91,9 @@
 
             <TextView
                 android:id="@+id/tvComment"
-                android:paddingLeft="@dimen/dp_4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_4" />
 
         </LinearLayout>
     </LinearLayout>

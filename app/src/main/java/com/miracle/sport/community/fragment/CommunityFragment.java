@@ -2,7 +2,6 @@ package com.miracle.sport.community.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,9 +10,7 @@ import com.miracle.R;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.network.GlideApp;
 import com.miracle.base.util.ContextHolder;
-import com.miracle.databinding.BannerLayoutBinding;
 import com.miracle.databinding.FragmentCommunityBinding;
-import com.miracle.databinding.SwipeRecyclerBinding;
 import com.miracle.sport.community.activity.PublishPostActivity;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -76,8 +73,10 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hotPostFragment.refresh();
-                latestPostFragment.refresh();
+                if (hotPostFragment.isVisible())
+                    hotPostFragment.refresh();
+                if (latestPostFragment.isVisible())
+                    latestPostFragment.refresh();
             }
         });
     }

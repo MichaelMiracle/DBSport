@@ -114,7 +114,7 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llCircle:
-                startActivityForResult(new Intent(mContext, CircleActivity.class), GET_CIRCLE);
+                startActivityForResult(new Intent(mContext, CircleActivity.class).putExtra("isFromPublishPostActivity", true), GET_CIRCLE);
                 break;
 
             case R.id.btPublish:
