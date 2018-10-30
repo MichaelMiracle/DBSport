@@ -150,11 +150,12 @@
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <!-- 聊天页面 -->
+        <!--android:theme="@style/horizontal_slide"-->
         <activity
             android:name=".base.im.ui.ChatActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+
             android:windowSoftInputMode="adjustResize" />
         <!-- 添加好友 -->
         <activity
@@ -163,10 +164,11 @@
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="stateVisible" />
         <!-- 群组详情 -->
+        <!--android:theme="@style/horizontal_slide"-->
         <activity
             android:name=".base.im.ui.GroupDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" />
+             />
         <!-- 群组列表 -->
         <activity
             android:name=".base.im.ui.GroupsActivity"

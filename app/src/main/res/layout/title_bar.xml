@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/icon_back"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
 
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/main_text_color"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <RelativeLayout
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
         </RelativeLayout>
