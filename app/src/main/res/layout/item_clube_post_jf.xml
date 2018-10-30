@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#fff"
     android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +28,6 @@
                 android:singleLine="true"
                 android:text="19:35"
                 android:gravity="center"
-                android:layout_marginRight="4dp"
                 android:textColor="#000"
                 android:textSize="16sp" />
 
@@ -44,6 +44,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="4dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -64,7 +65,10 @@
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
+                    android:layout_marginLeft="4dp"
                     android:id="@+id/item_clube_tv2"
+                    android:textSize="16sp"
+                    android:textColor="#970000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="得到" />
@@ -84,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
+                    android:gravity="center"
                     android:text="12" />
 
                 <TextView
@@ -92,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
+                    android:gravity="center"
                     android:text="12" />
 
                 <TextView
@@ -99,6 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="12" />
 
@@ -106,6 +113,7 @@
                     android:id="@+id/item_clube_tv6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="12" />
@@ -114,6 +122,7 @@
                     android:id="@+id/item_clube_tv7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="12" />
@@ -123,6 +132,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="12" />
 
@@ -132,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
+                    android:gravity="center"
                     android:text="12" />
 
                 <TextView
@@ -139,6 +150,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:singleLine="true"
                     android:text="12" />
 
