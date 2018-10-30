@@ -14,11 +14,12 @@ import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.net.FootClubServer;
 
 //赛事比分内容
-public class FragClubePostSC extends HandleFragment<FragClubePostBinding> {
+public class FragClubePostSCAndHot extends HandleFragment<FragClubePostBinding> {
     ClubeItem req;
     ClubeType parentType;
     PageLoadCallback callback;
     ClubePostSCAdapter adapter;
+    boolean isHot = false;
 
     public ClubeType getParentType() {
         return parentType;
@@ -36,10 +37,23 @@ public class FragClubePostSC extends HandleFragment<FragClubePostBinding> {
         this.req = req;
     }
 
+    public boolean isHot() {
+        return isHot;
+    }
+
+    public void setHot(boolean hot) {
+        isHot = hot;
+    }
+
     @Override
     public void onHandleMessage(Message msg) {
         if(msg.what == 1)
             callback.onRefresh();
+        else if(msg.what == 2){
+            isHot = true;
+            if(callback != null && adapter != null)
+                callback.onRefresh();
+        }
     }
 
     @Override
@@ -57,12 +71,15 @@ public class FragClubePostSC extends HandleFragment<FragClubePostBinding> {
         callback = new PageLoadCallback(adapter, binding.recyclerView) {
             @Override
             public void requestAction(int page, int limit) {
-                ZClient.getService(FootClubServer.class).getFootClubPostSC(parentType.getId(),req.getType(),page,limit).enqueue(this);
+                if(isHot)
+                    ZClient.getService(FootClubServer.class).getFootClubTypesHot(page,limit).enqueue(this);
+                else
+                    ZClient.getService(FootClubServer.class).getFootClubPostSC(parentType.getId(),req.getType(),page,limit).enqueue(this);
             }
         };
         callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 
-        callback.onRefresh();
+//        callback.onRefresh();
     }
 
     @Override

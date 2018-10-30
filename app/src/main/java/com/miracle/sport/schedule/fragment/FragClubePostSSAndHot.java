@@ -74,10 +74,10 @@ public class FragClubePostSSAndHot extends HandleFragment<FragClubePostBinding> 
         callback = new PageLoadCallback(adapter, binding.recyclerView) {
             @Override
             public void requestAction(int page, int limit) {
-                if(!isHot)
+//                if(!isHot)
                     ZClient.getService(FootClubServer.class).getFootClubPostSS(parentType.getId(), req.getType(), page, limit).enqueue(this);
-                else
-                    ZClient.getService(FootClubServer.class).getFootClubTypesHot(page,limit).enqueue(this);
+//                else
+//                    ZClient.getService(FootClubServer.class).getFootClubTypesHot(page,limit).enqueue(this);
             }
         };
         callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);

@@ -14,6 +14,8 @@ public class ClubePostSS {
      * list_type : 1
      */
 
+
+
     private int id;
     private int ranking;
     private String player_pic;

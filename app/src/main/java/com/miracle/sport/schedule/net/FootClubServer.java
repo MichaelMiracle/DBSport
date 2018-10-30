@@ -61,5 +61,5 @@ public interface FootClubServer {
     //热门
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/remen")
-    Call<ZResponse<List<ClubePostSS>>> getFootClubTypesHot(@Query("page") int page, @Query("pageSize") int pageSize);
+    Call<ZResponse<List<ClubePostSC>>> getFootClubTypesHot(@Query("page") int page, @Query("pageSize") int pageSize);
 }

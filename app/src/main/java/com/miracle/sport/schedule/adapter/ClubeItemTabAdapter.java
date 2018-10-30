@@ -8,7 +8,7 @@ import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.bean.ClubeItem;
 import com.miracle.sport.schedule.fragment.FragClubePostSSAndHot;
 import com.miracle.sport.schedule.fragment.FragClubePostJF;
-import com.miracle.sport.schedule.fragment.FragClubePostSC;
+import com.miracle.sport.schedule.fragment.FragClubePostSCAndHot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +55,10 @@ public class ClubeItemTabAdapter extends FragmentPagerAdapter {
 //            frag1.reqData();
             frag = frag1;
         }else{
-            FragClubePostSC frag1 = new FragClubePostSC();
+            FragClubePostSCAndHot frag1 = new FragClubePostSCAndHot();
             frag1.setParentType(parentType);
             frag1.setReq(item);
+            frag1.reqData();
             frag = frag1;
         }
         return frag;

@@ -21,14 +21,14 @@ public class ClubePostSCAdapter extends RecyclerViewAdapter<ClubePostSC> {
 
     @Override
     protected void convert(BaseViewHolder helper, ClubePostSC item) {
-        item.getFixture(); //比赛时间
-        item.getHome_pic(); //主场照片
-        item.getHome(); //主场
-
-        item.getGuest_pic();
-        item.getGuest();
-
-        item.getRotation();
+//        item.getFixture(); //比赛时间
+//        item.getHome_pic(); //主场照片
+//        item.getHome(); //主场
+//
+//        item.getGuest_pic();
+//        item.getGuest();
+//
+//        item.getRotation();
 
         helper.setText(R.id.item_clube_tv1, item.getFixture());
 
