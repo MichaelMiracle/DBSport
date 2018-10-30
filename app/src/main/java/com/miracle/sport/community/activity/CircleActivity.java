@@ -24,21 +24,25 @@ public class CircleActivity extends BaseActivity<ActivityCircleBinding> {
     private CircleIndexAdapter mAdapter;
     private CircleFragment circleFragment;
 
+    private boolean isFromPublishPostActivity;
+
     @Override
     public int getLayout() {
-        setTitle("圈子");
         return R.layout.activity_circle;
     }
 
     @Override
     public void initView() {
+        setTitle("圈子");
+        isFromPublishPostActivity = getIntent().getBooleanExtra("isFromPublishPostActivity", false);
         mAdapter = new CircleIndexAdapter(mContext);
         binding.indexListView.setAdapter(mAdapter);
         circleFragment = (CircleFragment) getSupportFragmentManager().findFragmentById(R.id.circleFragment);
+        circleFragment.setBoolean(isFromPublishPostActivity);
         reqData();
     }
 
-    private void reqData() {
+    public void reqData() {
         ZClient.getService(SportService.class).getCircleList().enqueue(new ZCallback<ZResponse<List<CircleBean>>>() {
             @Override
             public void onSuccess(ZResponse<List<CircleBean>> data) {

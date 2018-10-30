@@ -125,12 +125,14 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/myPost")
     Call<ZResponse<List<HomeCommentBean>>> getPostList();
+
     /**
      * 我的回帖
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/myReply")
     Call<ZResponse<List<HomeCommentBean>>> getReplyList();
+
     /**
      * 我的圈子
      */
@@ -144,5 +146,13 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/circleType")
     Call<ZResponse<List<CircleBean>>> getCircleList();
+
+    /**
+     * 收藏圈子
+     * type传"qx"取消收藏圈子
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/addSq")
+    Call<ZResponse> addCircle(@Query("class_id") int class_id, @Query("type") String type);
 
 }

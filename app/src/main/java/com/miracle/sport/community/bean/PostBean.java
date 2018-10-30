@@ -1,31 +1,36 @@
 package com.miracle.sport.community.bean;
 
+import java.util.List;
+
 /**
  * Created by Michael on 2018/10/27 15:43 (星期六)
  */
 public class PostBean {
 
+
     /**
-     * id : 3
-     * title : 东方
-     * thumb : http://xiaozhuang.988lhkj.com/uploads/20181027/522ec1ba72cd986bbc913e21005f84fe.JPG
-     * click_num : 1
+     * id : 20
+     * title : fuu
+     * thumb : ["http://xiaozhuang.988lhkj.comuploads/20181030/f5bfada557e243bce76702e788e33fc5.jpg","http://xiaozhuang.988lhkj.comuploads/20181030/9de6a0c0e69e20692d83eafb754d9705.jpg","http://xiaozhuang.988lhkj.comuploads/20181030/c58fe0a0c7128c68a874179b273a827a.png"]
+     * content : fjcjcj
+     * click_num : 0
      * comment_num : 0
-     * total : 1
-     * add_time : 2018-10-29 20:37:48
-     * nickname : 颜色不一样的烟火
+     * total : 0
+     * add_time : 2018-10-30 20:47:56
+     * nickname : Michael
      * name : 湖人
      */
 
     private int id;
     private String title;
-    private String thumb;
+    private String content;
     private int click_num;
     private int comment_num;
     private int total;
     private String add_time;
     private String nickname;
     private String name;
+    private List<String> thumb;
 
     public int getId() {
         return id;
@@ -43,12 +48,12 @@ public class PostBean {
         this.title = title;
     }
 
-    public String getThumb() {
-        return thumb;
+    public String getContent() {
+        return content;
     }
 
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getClick_num() {
@@ -97,5 +102,13 @@ public class PostBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(List<String> thumb) {
+        this.thumb = thumb;
     }
 }

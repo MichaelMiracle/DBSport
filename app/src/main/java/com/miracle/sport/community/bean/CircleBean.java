@@ -1,5 +1,6 @@
 package com.miracle.sport.community.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,11 +8,12 @@ import java.util.List;
  */
 public class CircleBean {
 
+
     /**
      * id : 1
      * name : NBA社区
      * pid : 0
-     * child : [{"id":5,"name":"火箭","pid":1,"coin":0},{"id":6,"name":"湖人","pid":1,"coin":1},{"id":7,"name":"勇士","pid":1,"coin":0},{"id":8,"name":"马刺","pid":1,"coin":1}]
+     * child : [{"id":5,"name":"火箭","pid":1,"follow":0},{"id":6,"name":"湖人","pid":1,"follow":1},{"id":7,"name":"勇士","pid":1,"follow":1},{"id":8,"name":"马刺","pid":1,"follow":1}]
      */
 
     private int id;
@@ -51,18 +53,18 @@ public class CircleBean {
         this.child = child;
     }
 
-    public static class ChildBean {
+    public static class ChildBean  implements Serializable {
         /**
          * id : 5
          * name : 火箭
          * pid : 1
-         * coin : 0
+         * follow : 0
          */
 
         private int id;
         private String name;
         private int pid;
-        private int coin;
+        private int follow;
 
         public int getId() {
             return id;
@@ -88,12 +90,12 @@ public class CircleBean {
             this.pid = pid;
         }
 
-        public int getCoin() {
-            return coin;
+        public int getFollow() {
+            return follow;
         }
 
-        public void setCoin(int coin) {
-            this.coin = coin;
+        public void setFollow(int follow) {
+            this.follow = follow;
         }
     }
 }

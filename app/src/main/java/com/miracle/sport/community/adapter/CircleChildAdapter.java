@@ -11,6 +11,7 @@ import com.miracle.sport.community.bean.CircleBean;
  */
 public class CircleChildAdapter extends RecyclerViewAdapter<CircleBean.ChildBean> {
 
+    private boolean isFromPublishPostActivity;
     private String selectOn, selectOff;
 
     public CircleChildAdapter() {
@@ -23,6 +24,15 @@ public class CircleChildAdapter extends RecyclerViewAdapter<CircleBean.ChildBean
     protected void convert(BaseViewHolder helper, CircleBean.ChildBean item) {
         helper.addOnClickListener(R.id.tvCheck);
         helper.setText(R.id.tvName, item.getName());
-        helper.setText(R.id.tvCheck, item.getCoin() == 1 ? selectOn : selectOff);
+        if (isFromPublishPostActivity) {
+            helper.setGone(R.id.tvCheck, false);
+        } else {
+            helper.setGone(R.id.tvCheck, true);
+            helper.setText(R.id.tvCheck, item.getFollow() == 1 ? selectOn : selectOff);
+        }
+    }
+
+    public void setBoolean(boolean isFromPublishPostActivity) {
+        this.isFromPublishPostActivity = isFromPublishPostActivity;
     }
 }

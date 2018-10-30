@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,8 +19,10 @@ import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
 import com.miracle.base.util.CommonUtils;
+import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.ActivityPublishPostBinding;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.bean.CircleBean;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -46,6 +49,7 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
 
     private PreViewAdapter mAdapter;
     private boolean hasAdd;
+    private CircleBean.ChildBean circle;
 
     @Override
     public int getLayout() {
@@ -58,7 +62,7 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
         rxPermission = new RxPermissions(this);
         requestPermissions();
         binding.recyclerView.setAdapter(mAdapter = new PreViewAdapter(R.layout.comment_picture_view));
-        mAdapter.addData((Bitmap) null);
+        mAdapter.addData("");
         hasAdd = true;
 
         ImagePicker.getInstance().setSelectLimit(3);
@@ -85,6 +89,7 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
     @Override
     public void initListener() {
         binding.llCircle.setOnClickListener(this);
+        binding.btPublish.setOnClickListener(this);
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -111,6 +116,10 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
             case R.id.llCircle:
                 startActivityForResult(new Intent(mContext, CircleActivity.class), GET_CIRCLE);
                 break;
+
+            case R.id.btPublish:
+                publishPost();
+                break;
         }
     }
 
@@ -123,16 +132,9 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
                     if (data != null) {
                         ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                         if (images != null && !images.isEmpty()) {
-                            List<MultipartBody.Part> parts = new ArrayList<>();
                             for (ImageItem imageItem : images) {
-                                String path = imageItem.path;
-                                File file = new File(path);
-                                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                                MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-                                parts.add(part);
-                                localDisplayImg(path);
+                                mAdapter.addData(mAdapter.getItemCount() - 1, imageItem.path);
                             }
-                            publishPost(parts);
                         }
                     } else {
                         Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
@@ -141,36 +143,50 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
                 break;
 
             case GET_CIRCLE:
-
+                if (resultCode == RESULT_OK) {
+                    circle = (CircleBean.ChildBean) data.getSerializableExtra("ChildBean");
+                    binding.tvCircle.setText(circle.getName());
+                }
                 break;
         }
 
     }
 
-    private void localDisplayImg(String path) {
-        mAdapter.addData(mAdapter.getItemCount() - 1, CommonUtils.getBitmap(path));
-    }
-
-    private void publishPost(List<MultipartBody.Part> parts) {
-
-        ZClient.getService(SportService.class).publishPost(1, binding.etTitle.getText().toString(), binding.etContent.getText().toString(), parts).enqueue(new ZCallback<ZResponse>() {
+    private void publishPost() {
+        if (circle == null) {
+            ToastUtil.toast("请选择您要发布的圈子");
+            return;
+        }
+        loadingDialog.show();
+        List<MultipartBody.Part> parts = new ArrayList<>();
+        for (String path : mAdapter.getData()) {
+            if (!TextUtils.isEmpty(path)) {
+                File file = new File(path);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                MultipartBody.Part part = MultipartBody.Part.createFormData("image[]", file.getName(), requestFile);
+                parts.add(part);
+            }
+        }
+        ZClient.getService(SportService.class).publishPost(circle.getId(), binding.etTitle.getText().toString(), binding.etContent.getText().toString(), parts).enqueue(new ZCallback<ZResponse>(loadingDialog) {
             @Override
             public void onSuccess(ZResponse data) {
-                loadingDialog.dismiss();
+                ToastUtil.toast(data.getMessage());
+                finish();
             }
         });
     }
 
-    private final class PreViewAdapter extends BaseQuickAdapter<Bitmap, BaseViewHolder> {
+    private final class PreViewAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
         PreViewAdapter(int layoutResId) {
             super(layoutResId);
         }
 
         @Override
-        protected void convert(BaseViewHolder helper, Bitmap bitmap) {
+        protected void convert(BaseViewHolder helper, String path) {
             helper.addOnClickListener(R.id.rlAdd);
             helper.addOnClickListener(R.id.tvDelete);
+            Bitmap bitmap = CommonUtils.getBitmap(path);
             if (bitmap == null) {
                 helper.setGone(R.id.rlItem, false);
                 helper.setGone(R.id.rlAdd, true);
@@ -183,7 +199,7 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
         }
 
         @Override
-        public void addData(int position, @NonNull Bitmap data) {
+        public void addData(int position, @NonNull String data) {
             super.addData(position, data);
             if (getItemCount() == 4) {
                 remove(3);
@@ -195,10 +211,9 @@ public class PublishPostActivity extends BaseActivity<ActivityPublishPostBinding
         public void remove(int position) {
             super.remove(position);
             if (getItemCount() == 2 && !hasAdd) {
-                addData((Bitmap) null);
+                addData("");
                 hasAdd = true;
             }
         }
-
     }
 }
