@@ -34,11 +34,12 @@ public class MyCollectionsActivity extends BaseActivity<SwipeRecyclerBinding> {
         setTitle("我的收藏");
         binding.recyclerView.setAdapter(mAdapter = new CollectionsListAdapter(mContext));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        showLoadingDialog();
         initCallback();
     }
 
     private void initCallback() {
-        callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {
+        callBack = new PageLoadCallback(mAdapter, binding.recyclerView,loadingDialog) {
             @Override
             public void requestAction(int page, int limit) {
                 ZClient.getService(SportService.class).getMycollections(page,limit).enqueue(callBack);

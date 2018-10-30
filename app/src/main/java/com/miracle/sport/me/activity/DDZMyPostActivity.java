@@ -15,10 +15,11 @@ import com.miracle.databinding.SwipeRecyclerBinding;
 import com.miracle.michael.doudizhu.activity.DDZNewsDetailActivity;
 import com.miracle.michael.lottery.adapter.LotteryMyCollectionAdapter;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.adapter.PostListAdapter;
 
 public class DDZMyPostActivity extends BaseActivity<SwipeRecyclerBinding> {
 
-    private LotteryMyCollectionAdapter mAdapter;
+    private PostListAdapter mAdapter;
     private PageLoadCallback callBack;
 
     @Override
@@ -28,17 +29,18 @@ public class DDZMyPostActivity extends BaseActivity<SwipeRecyclerBinding> {
 
     @Override
     public void initView() {
+        showLoadingDialog();
         setTitle("我的发帖");
-        binding.recyclerView.setAdapter(mAdapter = new LotteryMyCollectionAdapter(mContext));
+        binding.recyclerView.setAdapter(mAdapter = new PostListAdapter());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         initCallback();
     }
 
     private void initCallback() {
-        callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {
+        callBack = new PageLoadCallback(mAdapter, binding.recyclerView,loadingDialog) {
             @Override
             public void requestAction(int page, int limit) {
-                ZClient.getService(SportService.class).getPostList().enqueue(callBack);
+                ZClient.getService(SportService.class).getPostList(page,limit).enqueue(callBack);
             }
         };
         callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
@@ -57,7 +59,7 @@ public class DDZMyPostActivity extends BaseActivity<SwipeRecyclerBinding> {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, DDZNewsDetailActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+//                startActivity(new Intent(mContext, DDZNewsDetailActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
             }
         });
     }

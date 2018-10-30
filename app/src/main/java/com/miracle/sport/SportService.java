@@ -138,7 +138,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/myPost")
-    Call<ZResponse<List<HomeCommentBean>>> getPostList();
+    Call<ZResponse<List<PostBean>>> getPostList(@Query("page") int page, @Query("pageSize") int pageSize);
 
     /**
      * 我的回帖

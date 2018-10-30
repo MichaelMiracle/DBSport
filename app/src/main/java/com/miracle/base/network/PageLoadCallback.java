@@ -1,5 +1,6 @@
 package com.miracle.base.network;
 
+import android.app.Dialog;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
@@ -27,10 +28,16 @@ public abstract class PageLoadCallback<T> implements Callback<T>, SwipeRefreshLa
     private int pageSize = 20;
     private boolean isLoadMore;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private Dialog dialog;
 
     public PageLoadCallback(RecyclerViewAdapter adapter, RecyclerView recyclerView) {
         adapter.setOnLoadMoreListener(this, recyclerView);
         mAdapter = adapter;
+    }
+    public PageLoadCallback(RecyclerViewAdapter adapter, RecyclerView recyclerView, Dialog dialog) {
+        adapter.setOnLoadMoreListener(this, recyclerView);
+        mAdapter = adapter;
+        this.dialog = dialog;
     }
 
     public void initSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
@@ -101,6 +108,9 @@ public abstract class PageLoadCallback<T> implements Callback<T>, SwipeRefreshLa
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
+        }
+        if (dialog != null) {
+            dialog.dismiss();
         }
         call.cancel();
     }

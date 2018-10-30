@@ -232,7 +232,8 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
                 if(TextUtils.isEmpty(binding.includeSendComment.etCommentContent.getText())){
                     ToastUtil.toast("内容不能空");
                 }else{
-                    ZClient.getService(SportService.class).sendHomeCommet(id , binding.includeSendComment.etCommentContent.getText().toString()).enqueue(new ZCallback<ZResponse<String>>() {
+                    showLoadingDialog();
+                    ZClient.getService(SportService.class).sendHomeCommet(id , binding.includeSendComment.etCommentContent.getText().toString()).enqueue(new ZCallback<ZResponse<String>>(loadingDialog) {
                         @Override
                         public void onSuccess(ZResponse<String> data) {
                             ToastUtil.toast("评论成功");
