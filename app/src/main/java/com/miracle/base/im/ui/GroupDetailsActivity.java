@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 package com.miracle.base.im.ui;
+import com.miracle.base.BaseActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -53,13 +54,14 @@ import com.hyphenate.easeui.widget.EaseSwitchButton;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.miracle.R;
+import com.miracle.databinding.EmActivityGroupDetailsBinding;
 import com.yanzhenjie.sofia.Sofia;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GroupDetailsActivity extends BaseActivity implements OnClickListener {
+public class GroupDetailsActivity extends BaseActivity<EmActivityGroupDetailsBinding> implements OnClickListener {
 	private static final String TAG = "GroupDetailsActivity";
 	private static final int REQUEST_CODE_ADD_USER = 0;
 	private static final int REQUEST_CODE_EXIT = 1;
@@ -100,22 +102,37 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 	GroupChangeListener groupChangeListener;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    
-        groupId = getIntent().getStringExtra("groupId");
-        group = EMClient.getInstance().groupManager().getGroup(groupId);
+//	@Override
+//	protected void onCreate(Bundle savedInstanceState) {
+//	    super.onCreate(savedInstanceState);
+//
+//
+//
+////		setContentView(R.layout.em_activity_group_details);
+////		getWindow().getDecorView().setBackgroundColor(getResources().getColor(com.hyphenate.easeui.R.color.main_bg_color));
+////		Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
+//
+//
+//
+//
+//	}
 
-        // we are not supposed to show the group if we don't find the group
-        if(group == null){
-            finish();
-            return;
-        }
-        
-		setContentView(R.layout.em_activity_group_details);
-//		getWindow().getDecorView().setBackgroundColor(getResources().getColor(com.hyphenate.easeui.R.color.main_bg_color));
-//		Sofia.with(this).statusBarBackground(getResources().getColor(com.hyphenate.easeui.R.color.titlebar_color)).statusBarDarkFont();
+	@Override
+	public int getLayout() {
+		return R.layout.em_activity_group_details;
+	}
+
+	@Override
+	public void initView() {
+		hideTitle();
+		groupId = getIntent().getStringExtra("groupId");
+		group = EMClient.getInstance().groupManager().getGroup(groupId);
+
+		// we are not supposed to show the group if we don't find the group
+		if(group == null){
+			finish();
+			return;
+		}
 
 		instance = this;
 		st = getResources().getString(R.string.people);
@@ -154,7 +171,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		// show dismiss button if you are owner of group
 		if (EMClient.getInstance().getCurrentUser().equals(group.getOwner())) {
 			exitBtn.setVisibility(View.GONE);
-			deleteBtn.setVisibility(View.VISIBLE);
+			deleteBtn.setVisibility(View.GONE);
 		}
 
 		//get push configs
@@ -162,7 +179,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 		groupChangeListener = new GroupChangeListener();
 		EMClient.getInstance().groupManager().addGroupChangeListener(groupChangeListener);
-		
+
 		((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount() + st);
 
 		membersAdapter = new GridAdapter(this, R.layout.em_grid_owner, new ArrayList<String>());
@@ -181,13 +198,17 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		changeGroupDescriptionLayout.setOnClickListener(this);
 		changeGroupExtension.setOnClickListener(this);
 		rl_switch_block_groupmsg.setOnClickListener(this);
-        searchLayout.setOnClickListener(this);
+		searchLayout.setOnClickListener(this);
 		blockOfflineLayout.setOnClickListener(this);
 		announcementLayout.setOnClickListener(this);
 		groupNotiLayout.setOnClickListener(this);
 		sharedFilesLayout.setOnClickListener(this);
 	}
 
+	@Override
+	public void initListener() {
+
+	}
 
 
 	boolean isCurrentOwner(EMGroup group) {
