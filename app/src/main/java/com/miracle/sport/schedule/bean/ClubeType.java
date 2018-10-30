@@ -10,6 +10,7 @@ public class ClubeType {
 
     private int id;
     private String name;
+    private String pic;
 
     public int getId() {
         return id;
@@ -30,6 +31,14 @@ public class ClubeType {
     public ClubeType(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public ClubeType() {
