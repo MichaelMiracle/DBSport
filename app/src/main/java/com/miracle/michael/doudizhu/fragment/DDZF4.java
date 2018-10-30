@@ -21,6 +21,7 @@ import com.miracle.michael.doudizhu.activity.DDZMyCollectionsActivity;
 import com.miracle.sport.me.activity.DDZMyCircleActivity;
 import com.miracle.sport.me.activity.DDZMyPostActivity;
 import com.miracle.sport.me.activity.DDZMyReplyActivity;
+import com.miracle.sport.me.activity.MyCollectionsActivity;
 import com.wx.goodview.GoodView;
 
 public class DDZF4 extends BaseFragment<F4DdzBinding> {
@@ -103,7 +104,7 @@ public class DDZF4 extends BaseFragment<F4DdzBinding> {
                     GOTO.LoginActivity();
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
-                    startActivity(new Intent(mContext, DDZMyCollectionsActivity.class));
+                    startActivity(new Intent(mContext, MyCollectionsActivity.class));
                 }
                 break;
             case R.id.ibmyCircle:

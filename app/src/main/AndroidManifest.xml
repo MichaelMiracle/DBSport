@@ -473,6 +473,7 @@
         <activity
             android:name=".sport.community.activity.CircleActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".sport.me.activity.MyCollectionsActivity" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

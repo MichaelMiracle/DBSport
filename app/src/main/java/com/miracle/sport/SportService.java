@@ -5,6 +5,7 @@ import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.community.bean.CircleBean;
 import com.miracle.sport.community.bean.PostBean;
 import com.miracle.sport.home.bean.ChannerlKey;
+import com.miracle.sport.home.bean.Football;
 import com.miracle.sport.home.bean.HomeBean;
 import com.miracle.sport.home.bean.HomeCommentBean;
 
@@ -103,6 +104,19 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/click")
     Call<ZResponse<String>> setClickClass(@Query("createid") int createid,@Query("click") int click,@Query("type") String type);
+
+    /**
+     * 收藏接口
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/collect")
+    Call<ZResponse<String>> likeOrDislike(@Query("createid") int createid,@Query("type") String type);
+    /**
+     * 我的收藏接口
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myCollect")
+    Call<ZResponse<List<Football>>> getMycollections(@Query("page") int page, @Query("pageSize") int pageSize);
 
     /**
      * 发评论

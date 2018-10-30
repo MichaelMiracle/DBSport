@@ -162,7 +162,14 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(SQLiteUtil.getString(SQLiteKey.USER))){
-//                    ZClientFootBall.getService(Service1.class).likeOrDislike(id,Constant.TYPEAPP).enqueue(likeCallback);
+                    final int coin = newsDetailBean.getCoin() == 0?1:0;
+                    ZClient.getService(SportService.class).likeOrDislike(id,coin+"").enqueue(new ZCallback<ZResponse<String>>() {
+                        @Override
+                        public void onSuccess(ZResponse<String> data) {
+                            newsDetailBean.setClick(coin);
+                            ToastUtil.toast(data.getMessage());
+                        }
+                    });
                 }else{
                     GOTO.LoginActivity();
                 }
@@ -206,12 +213,12 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
     }
 
-    private ZCallback<ZResponse> likeCallback = new ZCallback<ZResponse>() {
-        @Override
-        public void onSuccess(ZResponse data) {
-            ToastUtil.toast(data.getMessage());
-        }
-    };
+//    private ZCallback<String> likeCallback = new ZCallback<ZResponse>() {
+//        @Override
+//        public void onSuccess(ZResponse data) {
+//            ToastUtil.toast(data.getMessage());
+//        }
+//    };
 
     @Override
     public void onClick(View v) {
