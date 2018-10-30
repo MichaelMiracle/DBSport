@@ -7,6 +7,7 @@ import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
 import com.miracle.base.network.ZService;
+import com.miracle.databinding.FragmentHotpostBinding;
 import com.miracle.databinding.RecyclerBinding;
 
 import com.miracle.R;
@@ -19,7 +20,7 @@ import retrofit2.Call;
 /**
  * Created by Michael on 2018/10/29 14:07 (星期一)
  */
-public class HotPostFragment extends BaseFragment<RecyclerBinding> {
+public class HotPostFragment extends BaseFragment<FragmentHotpostBinding> {
 
 
     private PostListAdapter mAdapter;
@@ -28,7 +29,7 @@ public class HotPostFragment extends BaseFragment<RecyclerBinding> {
 
     @Override
     public int getLayout() {
-        return R.layout.recycler;
+        return R.layout.fragment_hotpost;
     }
 
     @Override
@@ -58,6 +59,12 @@ public class HotPostFragment extends BaseFragment<RecyclerBinding> {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        callBack.onRefresh();
     }
 
     public void refresh() {

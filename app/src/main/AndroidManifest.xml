@@ -456,6 +456,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden"
             >
         </activity>
+        <activity android:name=".sport.community.activity.PublishPostActivity" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

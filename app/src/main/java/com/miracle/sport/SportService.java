@@ -52,7 +52,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/sendCircle")
-    Call<ZResponse> publishPost(@Query("class_id") int class_id);
+    Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("content") String content);
 
 
     /**

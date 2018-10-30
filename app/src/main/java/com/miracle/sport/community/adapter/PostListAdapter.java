@@ -1,7 +1,11 @@
 package com.miracle.sport.community.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
@@ -15,17 +19,38 @@ import com.miracle.sport.community.bean.PostBean;
  */
 public class PostListAdapter extends RecyclerViewAdapter<PostBean> {
 
+    private LinearLayout.LayoutParams params;
+
     public PostListAdapter() {
         super(R.layout.item_post);
+        params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, PostBean item) {
         helper.setText(R.id.tvTitle, item.getTitle());
         helper.setText(R.id.tvTime, item.getAdd_time());
-        GlideApp.with(ContextHolder.getContext()).load(item.getThumb())
-                .placeholder(R.mipmap.defaule_img)
-                .error(R.mipmap.empty)
-                .into((ImageView) helper.getView(R.id.iv0));
+        helper.setText(R.id.tvLike, item.getClick_num() + "");
+        helper.setText(R.id.tvComment, item.getComment_num() + "");
+        helper.setText(R.id.tvCircleName, item.getName());
+        helper.setText(R.id.tvAuthorName, item.getNickname());
+        String thumb = item.getThumb();
+        if (TextUtils.isEmpty(thumb)) {
+            helper.setGone(R.id.llPics, false);
+        } else {
+            helper.setGone(R.id.llPics, true);
+            String[] split = thumb.split("\\|");
+            LinearLayout container = helper.getView(R.id.llPics);
+            for (String url : split) {
+                ImageView imageView = new ImageView(ContextHolder.getContext());
+                imageView.setLayoutParams(params);
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                GlideApp.with(ContextHolder.getContext()).load(url)
+                        .placeholder(R.mipmap.defaule_img)
+                        .error(R.mipmap.empty)
+                        .into(imageView);
+                container.addView(imageView);
+            }
+        }
     }
 }
