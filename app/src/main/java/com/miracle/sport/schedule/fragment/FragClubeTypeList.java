@@ -49,6 +49,12 @@ public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
             }
 
             @Override
+            public void onFinish(Call call) {
+                super.onFinish(call);
+                setUIStatus(ShowStat.NORMAL);
+            }
+
+            @Override
             public void onFailure(Call call, Throwable t) {
                 super.onFailure(call, t);
                 setUIStatus(ShowStat.ERR);

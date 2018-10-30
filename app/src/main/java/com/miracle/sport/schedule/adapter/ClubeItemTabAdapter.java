@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.bean.ClubeItem;
-import com.miracle.sport.schedule.fragment.FragClubePostSSAndHot;
+import com.miracle.sport.schedule.fragment.FragClubePostSS;
 import com.miracle.sport.schedule.fragment.FragClubePostJF;
 import com.miracle.sport.schedule.fragment.FragClubePostSCAndHot;
 
@@ -49,10 +49,9 @@ public class ClubeItemTabAdapter extends FragmentPagerAdapter {
             frag1.setReq(item);
             frag = frag1;
         }else if(item.getType().equalsIgnoreCase(ClubeItem.TYPE_SS) || item.getType().equalsIgnoreCase(ClubeItem.TYPE_ZG)){
-            FragClubePostSSAndHot frag1 = new FragClubePostSSAndHot();
+            FragClubePostSS frag1 = new FragClubePostSS();
             frag1.setParentType(parentType);
             frag1.setReq(item);
-//            frag1.reqData();
             frag = frag1;
         }else{
             FragClubePostSCAndHot frag1 = new FragClubePostSCAndHot();

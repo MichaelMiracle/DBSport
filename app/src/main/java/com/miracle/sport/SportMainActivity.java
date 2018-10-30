@@ -35,7 +35,6 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
         binding.tvContactCustomerService.setOnClickListener(this);
         binding.rlGroupChat.setOnClickListener(this);
         ZClient.getService(SportService.class).dislike(2, 0);
-
     }
 
     @Override

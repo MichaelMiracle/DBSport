@@ -13,8 +13,10 @@ import com.miracle.sport.schedule.bean.ClubeItem;
 import com.miracle.sport.schedule.bean.ClubeType;
 import com.miracle.sport.schedule.net.FootClubServer;
 
+import retrofit2.Call;
+
 //赛事比分内容
-public class FragClubePostSSAndHot extends HandleFragment<FragClubePostBinding> {
+public class FragClubePostSS extends HandleFragment<FragClubePostBinding> {
     ClubeItem req;
     ClubeType parentType;
     PageLoadCallback callback;
@@ -79,9 +81,33 @@ public class FragClubePostSSAndHot extends HandleFragment<FragClubePostBinding> 
 //                else
 //                    ZClient.getService(FootClubServer.class).getFootClubTypesHot(page,limit).enqueue(this);
             }
+
+            @Override
+            public void onFinish(Call call) {
+                super.onFinish(call);
+                setUIStatus(ShowStat.NORMAL);
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                setUIStatus(ShowStat.ERR);
+            }
         };
         callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
-//        reqData();
+        reqData();
+    }
+
+    @Override
+    protected void onErrClick() {
+        setUIStatus(ShowStat.LOADING);
+        reqData();
+    }
+
+    @Override
+    protected void onNodataClick() {
+        setUIStatus(ShowStat.LOADING);
+        reqData();
     }
 
     @Override

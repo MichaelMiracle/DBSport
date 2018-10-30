@@ -17,6 +17,8 @@ import com.miracle.sport.schedule.net.FootClubServer;
 
 import java.util.List;
 
+import retrofit2.Call;
+
 //赛事 tab
 public class FragClubeItemVP extends HandleFragment<FragClubeitmeVpBinding> {
     public static final int MSG_REQDATA_WAHT = 1;
@@ -51,13 +53,37 @@ public class FragClubeItemVP extends HandleFragment<FragClubeitmeVpBinding> {
             @Override
             public void onSuccess(ZResponse<List<ClubeItem>> data) {
                 tabAdapter.getDatas().clear();
-                for(ClubeItem item : data.getData())
+                if(data.getData() == null || data.getData().size() == 0)
                 {
-                    tabAdapter.getDatas().add(item);
+                    setUIStatus(ShowStat.NODATA);
+                }else{
+                    for(ClubeItem item : data.getData())
+                    {
+                        tabAdapter.getDatas().add(item);
+                    }
+                    setUIStatus(ShowStat.NORMAL);
                 }
                 tabAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onFailure(Call<ZResponse<List<ClubeItem>>> call, Throwable t) {
+                setUIStatus(ShowStat.ERR);
+                super.onFailure(call, t);
+            }
         });
+    }
+
+    @Override
+    protected void onErrClick() {
+        setUIStatus(ShowStat.LOADING);
+        reqData();
+    }
+
+    @Override
+    protected void onNodataClick() {
+        setUIStatus(ShowStat.LOADING);
+        reqData();
     }
 
     @Override

@@ -27,7 +27,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public class ZClient {
     // 网络请求超时时间值(s)
-    private static final int DEFAULT_TIMEOUT = 60;
+    private static final int DEFAULT_TIMEOUT = 10;
     // retrofit实例
     private Retrofit retrofit;
 

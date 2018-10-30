@@ -35,7 +35,8 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="暂无数据,刷新重试"
+                android:layout_gravity="center"
+                android:text="暂无数据,點擊刷新重试"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -48,7 +49,8 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="获取数据异常,刷新重试"
+                android:layout_gravity="center"
+                android:text="获取数据异常,點擊刷新重试"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
