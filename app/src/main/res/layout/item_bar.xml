@@ -5,7 +5,7 @@
         android:id="@+id/itemBarRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/base_gradient"
+        android:background="@color/white"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:minHeight="40dp"

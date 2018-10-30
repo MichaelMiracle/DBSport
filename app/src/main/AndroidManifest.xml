@@ -457,6 +457,12 @@
             >
         </activity>
         <activity android:name=".sport.community.activity.PublishPostActivity" />
+        <!--我的发帖-->
+        <activity android:name=".sport.me.activity.DDZMyPostActivity" />
+        <!--我的回帖-->
+        <activity android:name=".sport.me.activity.DDZMyReplyActivity" />
+        <!--我的圈子-->
+        <activity android:name=".sport.me.activity.DDZMyCircleActivity" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

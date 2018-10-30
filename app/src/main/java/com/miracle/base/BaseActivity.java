@@ -30,7 +30,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        getWindow().getDecorView().setBackgroundColor(CommonUtils.getColor(R.color.main_bg_color));
+//        getWindow().getDecorView().setBackgroundColor(CommonUtils.getColor(R.color.main_bg_color));
         mContext = this;
         mBaseBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.activity_base, null, false);
         binding = DataBindingUtil.inflate(getLayoutInflater(), getLayout(), null, false);
@@ -43,7 +43,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
         loadingDialog.setMessage("加载中...");
 
         //设置状态栏颜色
-        Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.titlebar_color)).statusBarDarkFont();
+//        Sofia.with(this).statusBarBackground(CommonUtils.getColor(R.color.titlebar_color)).statusBarDarkFont();
 //        setStatusBarColor();
         initView();
         initListener();

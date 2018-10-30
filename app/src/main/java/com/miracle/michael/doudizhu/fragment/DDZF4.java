@@ -18,6 +18,9 @@ import com.miracle.base.network.ZService;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.databinding.F4DdzBinding;
 import com.miracle.michael.doudizhu.activity.DDZMyCollectionsActivity;
+import com.miracle.sport.me.activity.DDZMyCircleActivity;
+import com.miracle.sport.me.activity.DDZMyPostActivity;
+import com.miracle.sport.me.activity.DDZMyReplyActivity;
 import com.wx.goodview.GoodView;
 
 public class DDZF4 extends BaseFragment<F4DdzBinding> {
@@ -51,6 +54,9 @@ public class DDZF4 extends BaseFragment<F4DdzBinding> {
     public void initListener() {
         binding.llMe.setOnClickListener(this);
         binding.ibOrderManage.setOnClickListener(this);
+        binding.ibmyCircle.setOnClickListener(this);
+        binding.ibmyPost.setOnClickListener(this);
+        binding.ibmyReply.setOnClickListener(this);
         binding.ibBailManage.setOnClickListener(this);
         binding.ibSettings.setOnClickListener(this);
         binding.ibGroupChat.setOnClickListener(this);
@@ -98,6 +104,30 @@ public class DDZF4 extends BaseFragment<F4DdzBinding> {
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
                     startActivity(new Intent(mContext, DDZMyCollectionsActivity.class));
+                }
+                break;
+            case R.id.ibmyCircle:
+                if (userInfo == null) {
+                    GOTO.LoginActivity();
+                } else {
+//                    GOTO.LotteryMyCollectionsActivity();
+                    startActivity(new Intent(mContext, DDZMyCircleActivity.class));
+                }
+                break;
+            case R.id.ibmyPost:
+                if (userInfo == null) {
+                    GOTO.LoginActivity();
+                } else {
+//                    GOTO.LotteryMyCollectionsActivity();
+                    startActivity(new Intent(mContext, DDZMyPostActivity.class));
+                }
+                break;
+            case R.id.ibmyReply:
+                if (userInfo == null) {
+                    GOTO.LoginActivity();
+                } else {
+//                    GOTO.LotteryMyCollectionsActivity();
+                    startActivity(new Intent(mContext, DDZMyReplyActivity.class));
                 }
                 break;
             case R.id.ibSettings:

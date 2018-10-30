@@ -110,4 +110,27 @@ public interface SportService {
     @POST("home/sport/sportComment")
     Call<ZResponse<List<HomeCommentBean>>> getCommentList(@Query("createid") int createid);
 
+
+    /**
+     * 我的发帖
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myPost")
+    Call<ZResponse<List<HomeCommentBean>>> getPostList();
+    /**
+     * 我的回帖
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myReply")
+    Call<ZResponse<List<HomeCommentBean>>> getReplyList();
+    /**
+     * 我的圈子
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/myCircle")
+    Call<ZResponse<List<HomeCommentBean>>> getMyCircleList();
+
+
+
+
 }
