@@ -29,7 +29,13 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
 //                .into((ImageView) helper.getView(R.id.iv));
         String thumb = item.getThumb();
          if(1 == item.getImages().length){
-            GlideApp.with(context).load(item.getImages()[0])
+             String urlLoad = "";
+             if(!TextUtils.isEmpty(thumb)){
+                 urlLoad = thumb;
+             }else{
+                 urlLoad = item.getImages()[0];
+             }
+            GlideApp.with(context).load(urlLoad)
                     .placeholder(R.mipmap.defaule_img)
                     .error(R.mipmap.empty)
                     .into((ImageView) helper.getView(R.id.iv1_1));
@@ -40,7 +46,13 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
             helper.setGone(R.id.iv2, false);
             helper.setGone(R.id.iv3, false);
         }else if(2 == item.getImages().length){
-            GlideApp.with(context).load(thumb)
+             String urlLoad = "";
+             if(!TextUtils.isEmpty(thumb)){
+                 urlLoad = thumb;
+             }else{
+                 urlLoad = item.getImages()[0];
+             }
+            GlideApp.with(context).load(urlLoad)
                     .placeholder(R.mipmap.defaule_img)
                     .error(R.mipmap.empty)
                     .into((ImageView) helper.getView(R.id.iv1_2));
@@ -55,7 +67,15 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
             helper.setGone(R.id.iv2, false);
             helper.setGone(R.id.iv3, false);
         }else if(3 <= item.getImages().length){
-            GlideApp.with(context).load(thumb)
+
+             String urlLoad = "";
+             if(!TextUtils.isEmpty(thumb)){
+                 urlLoad = thumb;
+             }else{
+                 urlLoad = item.getImages()[0];
+             }
+
+            GlideApp.with(context).load(urlLoad)
                     .placeholder(R.mipmap.defaule_img)
                     .error(R.mipmap.empty)
                     .into((ImageView) helper.getView(R.id.iv1));

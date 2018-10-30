@@ -30,7 +30,7 @@ public abstract class ZCallback<T> implements Callback<T> {
         T body = response.body();
         if (body instanceof ZResponse) {
             ZResponse zResponse = (ZResponse) body;
-            if (zResponse.getCode() == 200) {
+            if (zResponse.getCode() == 200 || zResponse.getCode() == 0) {
                 onSuccess(body);
                 onFinish();
             } else {
