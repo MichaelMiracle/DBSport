@@ -81,7 +81,12 @@
         <activity
             android:name=".base.switcher.WelcomeActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".michael.common.activity.RegisterActivity"
@@ -443,12 +448,7 @@
         <activity
             android:name=".sport.SportMainActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".sport.home.activity.SimpleWebActivity"
             android:launchMode="singleTask"
