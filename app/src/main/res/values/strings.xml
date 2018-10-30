@@ -36,8 +36,17 @@
     <string name="icon_cup">&#xe604;</string>
     <!--社区-->
     <string name="icon_community">&#xe603;</string>
-    <!--登录 注册-->
+    <!--加号，添加图片-->
+    <string name="icon_add">&#xe663;</string>
+    <!--删除X-->
+    <string name="icon_delete">&#xe626;</string>
+    <!--未选中-->
+    <string name="icon_select_off">&#xe63e;</string>
+    <!--选中-->
+    <string name="icon_select_on">&#xe63d;</string>
 
+
+    <!--登录 注册-->
     <string name="login_register">正在注册    |    登录</string>
     <string name="login_regist">注册    |    登录</string>
     <string name="import_phone_number">请输入您的手机号码</string>

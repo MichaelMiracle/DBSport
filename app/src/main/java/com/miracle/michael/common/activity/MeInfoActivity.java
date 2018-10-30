@@ -52,11 +52,12 @@ public class MeInfoActivity extends BaseActivity<ActivityMeInfoBinding> {
         userInfo = (UserInfoBean) getIntent().getSerializableExtra(Constant.USER_INFO);
         GlideApp.with(this).load(userInfo.getImg()).placeholder(R.mipmap.default_head).into(binding.ivHeadImg);
         binding.ibNickName.setText(userInfo.getNickname());
-        binding.ibPhone.setText(userInfo.getUsername() );
+        binding.ibPhone.setText(userInfo.getUsername());
         binding.ibEmail.setText(userInfo.getEmall());
         rxPermission = new RxPermissions(this);
         requestPermissions();
 
+        ImagePicker.getInstance().setSelectLimit(1);
     }
 
     private void requestPermissions() {
@@ -110,6 +111,12 @@ public class MeInfoActivity extends BaseActivity<ActivityMeInfoBinding> {
                 GOTO.ModifyPasswordActivity();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        subscribe.dispose();
     }
 
     @Override
