@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
 import com.miracle.base.adapter.RecyclerViewAdapter;
 import com.miracle.base.network.GlideApp;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.sport.community.bean.PostCommentBean;
 
@@ -14,16 +15,24 @@ import com.miracle.sport.community.bean.PostCommentBean;
  */
 public class PostCommentAdapter extends RecyclerViewAdapter<PostCommentBean> {
 
+    private int colorLike;
+    private int colorDislike;
+
     public PostCommentAdapter() {
         super(R.layout.item_post_comment);
+        colorLike = CommonUtils.getColor(R.color.red_ball);
+        colorDislike = CommonUtils.getColor(R.color.main_color_grey);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, PostCommentBean item) {
+        helper.addOnClickListener(R.id.tvLike);
         helper.setText(R.id.tvName, item.getNickname());
         helper.setText(R.id.tvContent, item.getContent());
         helper.setText(R.id.tvTime, item.getAdd_time());
         helper.setText(R.id.tvLikeCount, item.getClick_num() + "");
+        helper.setTextColor(R.id.tvLike, item.getClick() == 1 ? colorLike : colorDislike);
+        helper.setTextColor(R.id.tvLikeCount, item.getClick() == 1 ? colorLike : colorDislike);
 
         GlideApp.with(ContextHolder.getContext())
                 .load(item.getImg())

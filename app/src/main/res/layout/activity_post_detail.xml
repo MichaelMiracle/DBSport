@@ -111,10 +111,10 @@
 
         <com.miracle.sport.common.view.CommentBar
             android:id="@+id/commentBar"
-            android:background="@drawable/top_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/top_line" />
     </RelativeLayout>
 
 </layout>

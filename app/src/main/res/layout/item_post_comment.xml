@@ -26,7 +26,9 @@
             android:gravity="center_vertical" />
 
         <com.miracle.base.view.IconFontTextView
+            android:id="@+id/tvLike"
             android:layout_width="wrap_content"
+            android:textColor="@color/main_color_grey"
             android:layout_height="wrap_content"
             android:text="@string/icon_like" />
 

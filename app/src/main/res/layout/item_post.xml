@@ -42,34 +42,11 @@
 
             <TextView
                 android:id="@+id/tvAuthorName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/main_color_grey"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/llPics"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginRight="-10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tvTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
+                android:layout_weight="1"
+                android:textColor="@color/main_color_grey"
+                android:textSize="12sp" />
 
             <com.miracle.base.view.IconFontTextView
                 android:layout_width="wrap_content"
@@ -94,8 +71,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/dp_4" />
-
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/llPics"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginRight="-10dp" />
+
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

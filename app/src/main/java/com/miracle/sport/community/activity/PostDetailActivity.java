@@ -2,11 +2,13 @@ package com.miracle.sport.community.activity;
 
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
 import com.miracle.base.BaseActivity;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.ActivityPostDetailBinding;
 import com.miracle.sport.SportService;
@@ -75,14 +77,22 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding> 
                     public void onSuccess(ZResponse<List<PostCommentBean>> data) {
                         ToastUtil.toast(data.getMessage());
                         binding.commentBar.clearContent();
+                        reqPostDetail();
                         reqCommentList();
+                        CommonUtils.hideSoftInput(mContext,binding.getRoot());
                     }
                 });
             }
 
             @Override
             public void onLikeClick() {
-
+                ZClient.getService(SportService.class).likePost(id, 1).enqueue(new ZCallback<ZResponse>() {
+                    @Override
+                    public void onSuccess(ZResponse data) {
+                        ToastUtil.toast(data.getMessage());
+                        reqPostDetail();
+                    }
+                });
             }
 
             @Override
@@ -90,7 +100,23 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding> 
 
             }
         });
+        pAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.tvLike) {
+                    ZClient.getService(SportService.class).likePostComment(pAdapter.getItem(position).getComment_id(), 1, "pl").enqueue(likeCallback);
+                }
+            }
+        });
     }
+
+    private ZCallback<ZResponse> likeCallback = new ZCallback<ZResponse>() {
+        @Override
+        public void onSuccess(ZResponse data) {
+            ToastUtil.toast(data.getMessage());
+            reqCommentList();
+        }
+    };
 
     private void reqCommentList() {
         ZClient.getService(SportService.class).getPostCommentList(id).enqueue(new ZCallback<ZResponse<List<PostCommentBean>>>() {

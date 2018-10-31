@@ -44,6 +44,8 @@
     <string name="icon_select_off">&#xe63e;</string>
     <!--选中-->
     <string name="icon_select_on">&#xe63d;</string>
+    <!--发送-->
+    <string name="icon_send">&#xe621;</string>
 
 
     <!--登录 注册-->

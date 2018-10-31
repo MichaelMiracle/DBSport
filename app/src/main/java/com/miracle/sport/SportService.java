@@ -79,11 +79,18 @@ public interface SportService {
 
 
     /**
-     * 点赞
+     * 帖子点赞
      */
     @Headers({"BaseUrl:zh"})
-    @POST("home/sport/click")
-    Call<ZResponse> like(@Query("createid") int createid);
+    @POST("home/sport/sportClick")
+    Call<ZResponse> likePost(@Query("createid") int createid, @Query("click") int click);
+
+    /**
+     * 帖子评论点赞
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/sportClick")
+    Call<ZResponse> likePostComment(@Query("createid") int createid, @Query("click") int click, @Query("type") String type);
 
     /**
      * 取消点赞

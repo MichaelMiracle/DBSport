@@ -75,7 +75,13 @@ public class CommentBar extends LinearLayout implements View.OnClickListener {
     }
 
     public void setLike(boolean like) {
-        binding.tvLike.setTextColor(like ? colorLike : colorDislike);
+        if (like) {
+            binding.tvLike.setTextColor(colorLike);
+            binding.tvLike.setEnabled(false);
+        } else {
+            binding.tvLike.setTextColor(colorDislike);
+            binding.tvLike.setEnabled(true);
+        }
     }
 
     public void clearContent() {

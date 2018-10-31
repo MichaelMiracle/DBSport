@@ -7,31 +7,24 @@ public class PostCommentBean {
 
 
     /**
-     * comment_id : 4
+     * comment_id : 1
      * user_id : 12
      * nickname : Michael
-     * content : hhghhj
-     * add_time : 2018-10-31 11:38:39
-     * click_num : 1
-     * comment_num : 10
+     * img : http://9.988lhkj.com/app/imgcom.miracle/10//M6UqcyAR2VQEPAJ34d0y17eapKJQzVDpYDOcpTml.jpeg
+     * content : xkxj
+     * add_time : 2018-10-31 16:32:16
+     * click_num : 0
+     * click : 0
      */
 
-    private String img;
     private int comment_id;
     private int user_id;
     private String nickname;
+    private String img;
     private String content;
     private String add_time;
     private int click_num;
-    private int comment_num;
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
+    private int click;
 
     public int getComment_id() {
         return comment_id;
@@ -55,6 +48,14 @@ public class PostCommentBean {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getContent() {
@@ -81,11 +82,11 @@ public class PostCommentBean {
         this.click_num = click_num;
     }
 
-    public int getComment_num() {
-        return comment_num;
+    public int getClick() {
+        return click;
     }
 
-    public void setComment_num(int comment_num) {
-        this.comment_num = comment_num;
+    public void setClick(int click) {
+        this.click = click;
     }
 }
