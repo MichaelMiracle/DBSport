@@ -3,6 +3,7 @@ package com.miracle.sport.community.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,6 +15,7 @@ import com.miracle.base.network.GlideApp;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.FragmentCommunityBinding;
 import com.miracle.sport.SportService;
@@ -45,9 +47,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     @Override
     public void initView() {
         binding.zRadiogroup.setUp(getChildFragmentManager(), R.id.containerCommunity, hotPostFragment = new HotPostFragment(), latestPostFragment = new LatestPostFragment());
-
         binding.recyclerView.setAdapter(myCircleAdapter = new MyCircleAdapterWithAdd());
-        myCircleAdapter.addData((MyCircleBean) null);
         initBanner();
     }
 
@@ -58,6 +58,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     }
 
     private void reqMyCircle() {
+        if (TextUtils.isEmpty(CommonUtils.getUserId())) {
+            return;
+        }
         myCircleAdapter.setNewData(null);
         myCircleAdapter.addData((MyCircleBean) null);
         ZClient.getService(SportService.class).getMyCircleList().enqueue(new ZCallback<ZResponse<List<MyCircleBean>>>() {
