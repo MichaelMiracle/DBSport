@@ -189,6 +189,12 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                    return;
+                }
+
                 if(0 == mAdapter.getItem(position).getClick()){
                     goodView.setImage(getResources().getDrawable(R.mipmap.good_checked));
 //                goodView.setText("+1");
@@ -203,6 +209,12 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
         binding.includeSendComment.commentClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                    return;
+                }
+
                if(1 == newsDetailBean.getClick()){
                    ToastUtil.toast("已给文章点过赞");
                }else{
@@ -225,10 +237,19 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
 
         switch (v.getId()){
             case R.id.iv_good:
-                goodView.setTextInfo("+1", Color.parseColor("#f66467"), 14);
-                goodView.show(v);
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                }else{
+                    goodView.setTextInfo("+1", Color.parseColor("#f66467"), 14);
+                    goodView.show(v);
+                }
                 break;
             case R.id.img_send:
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                    return;
+                }
+
                 if(TextUtils.isEmpty(binding.includeSendComment.etCommentContent.getText())){
                     ToastUtil.toast("内容不能空");
                 }else{
