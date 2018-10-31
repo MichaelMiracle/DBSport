@@ -167,7 +167,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
                     ZClient.getService(SportService.class).likeOrDislike(id,coin+"").enqueue(new ZCallback<ZResponse<String>>() {
                         @Override
                         public void onSuccess(ZResponse<String> data) {
-                            newsDetailBean.setClick(coin);
+                            newsDetailBean.setCion(coin);
                             ToastUtil.toast(data.getMessage());
                         }
                     });

@@ -54,6 +54,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
     @Override
     public void initView() {
         showLoadingDialog();
+        setTitle("资讯详情");
         id = getIntent().getIntExtra("id", 0);
         binding.webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -89,7 +90,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
     }
 
     private void reqData() {
-        ZClient.getService(SportService.class).getCommentDetail(id).enqueue(new ZCallback<ZResponse<ArticleDetailBean>>(loadingDialog) {
+        ZClient.getService(SportService.class).getCommentDetail(id).enqueue(new ZCallback<ZResponse<ArticleDetailBean>>() {
             @Override
             public void onSuccess(ZResponse<ArticleDetailBean> data) {
                 dismissLoadingDialog();
@@ -106,8 +107,14 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
 //                reqCommentData();
                 mAdapter.setNewData(data.getData().getComment());
             }
-        });
 
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                binding.swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
+            }
+        });
 
     }
 
@@ -170,7 +177,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                     ZClient.getService(SportService.class).likeOrDislike(id,coin+"").enqueue(new ZCallback<ZResponse<String>>() {
                         @Override
                         public void onSuccess(ZResponse<String> data) {
-                            newsDetailBean.setClick(coin);
+                            newsDetailBean.setCion(coin);
                             ToastUtil.toast(data.getMessage());
                         }
                     });
