@@ -155,4 +155,14 @@
     <color name="color_d43d3d">#d43d3d</color>
     <color name="color_e8e8e8">#e8e8e8</color>
 
+    <!--========================-->
+    <color name="praise_item_default">#333333</color>
+    <color name="praise_item_selector_default">#cccccc</color>
+    <color name="praise_item">#8290AF</color>
+    <color name="color_8290AF">#8290AF</color>
+
+    <color name="default_clickable_color">#cccccc</color>
+    <color name="basic_color_primary">#373b3e</color>
+    <color name="im_line_color">#dadada</color>
+
 </resources>

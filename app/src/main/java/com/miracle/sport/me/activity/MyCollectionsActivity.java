@@ -16,6 +16,7 @@ import com.miracle.michael.doudizhu.activity.DDZNewsDetailActivity;
 import com.miracle.michael.lottery.adapter.LotteryMyCollectionAdapter;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.activity.SimpleWebActivity;
+import com.miracle.sport.home.activity.SimpleWebCommentActivity;
 import com.miracle.sport.home.adapter.HomeListAdapter;
 import com.miracle.sport.me.adapter.CollectionsListAdapter;
 
@@ -61,7 +62,7 @@ public class MyCollectionsActivity extends BaseActivity<SwipeRecyclerBinding> {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, SimpleWebActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+                startActivity(new Intent(mContext, SimpleWebCommentActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
             }
         });
     }

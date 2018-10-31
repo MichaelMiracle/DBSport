@@ -24,7 +24,7 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
 
     @Override
     protected void convert(BaseViewHolder helper, Football item) {
-        helper.setText(R.id.tvTitle, item.getTitle().replace("微信",""));
+        helper.setText(R.id.tvTitle, item.getTitle());
 //        try {
 //            Long longTime = TimeUtils.stringToLong(item.getTime(),"yyyy-MM-dd HH:mm:ss");
 //            helper.setText(R.id.tvTime, TimeUtils.getShortTime(longTime));

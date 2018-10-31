@@ -1,6 +1,7 @@
 package com.miracle.sport;
 
 import com.miracle.base.network.ZResponse;
+import com.miracle.michael.common.bean.ArticleDetailBean;
 import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.community.bean.CircleBean;
 import com.miracle.sport.community.bean.PostBean;
@@ -123,6 +124,13 @@ public interface SportService {
     Call<ZResponse<NewsDetailBean>> getNewsDetail(@Query("id") int id);
 
     /**
+     * 列表详情
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/comment/detail")
+    Call<ZResponse<ArticleDetailBean>> getCommentDetail(@Query("id") int id);
+
+    /**
      * 评论点赞
      */
     @Headers({"BaseUrl:zh"})
@@ -149,6 +157,13 @@ public interface SportService {
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/sendComment")
     Call<ZResponse<String>> sendHomeCommet(@Query("createid") int createid, @Query("content") String content);
+
+    /**
+     * 发评论
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/comment/sendComment")
+    Call<ZResponse<String>> sendCommentCommet(@Query("id") int id, @Query("content") String content,@Query("to_user_id") String to_user_id,@Query("type") String type);
 
     /**
      * 获取评论列表

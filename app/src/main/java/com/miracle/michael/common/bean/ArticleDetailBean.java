@@ -1,9 +1,11 @@
 package com.miracle.michael.common.bean;
 
+import java.util.List;
+
 /**
  * Created by Michael on 2018/10/17 15:32 (星期三)
  */
-public class NewsDetailBean {
+public class ArticleDetailBean {
 
     /**
      * id : 1
@@ -29,8 +31,9 @@ public class NewsDetailBean {
     private int coin;
 
     private int click_num;
-    private int click;
     private int comment_num;
+    private int click;
+    private List<ArticleCommentBean> comment;
 
     public int getId() {
         return id;
@@ -122,5 +125,13 @@ public class NewsDetailBean {
 
     public void setClick(int click) {
         this.click = click;
+    }
+
+    public List<ArticleCommentBean> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<ArticleCommentBean> comment) {
+        this.comment = comment;
     }
 }

@@ -474,6 +474,9 @@
         <activity
             android:name=".sport.community.activity.PostDetailActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".sport.home.activity.SimpleWebCommentActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

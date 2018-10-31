@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="1dp"
             android:text="6"
-            android:drawableLeft="@mipmap/eye_open"
+            android:drawableLeft="@mipmap/message_open"
             android:drawablePadding="5dp"
             android:paddingRight="16dp"
             />

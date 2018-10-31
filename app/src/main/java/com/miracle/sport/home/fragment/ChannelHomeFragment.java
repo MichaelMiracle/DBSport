@@ -17,6 +17,7 @@ import com.miracle.michael.chess.adapter.ChessListAdapter;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.ServiceHome;
 import com.miracle.sport.home.activity.SimpleWebActivity;
+import com.miracle.sport.home.activity.SimpleWebCommentActivity;
 import com.miracle.sport.home.adapter.HomeListAdapter;
 
 /**
@@ -72,7 +73,7 @@ public class ChannelHomeFragment extends BaseFragment<FragmentCategoryHomeBindin
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 //                startActivity(new Intent(mContext, SimpleWebChessActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
-                startActivity(new Intent(mContext, SimpleWebActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+                startActivity(new Intent(mContext, SimpleWebCommentActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
             }
         });
     }
