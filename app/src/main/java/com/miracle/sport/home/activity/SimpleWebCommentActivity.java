@@ -254,6 +254,10 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
         mAdapter.setOnChildItemListener(new ArticleListAdapter.OnChildItemListener() {
             @Override
             public void onItemClick(int id, String toUserid) {
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                    return;
+                }
                 CommonUtils.showSoftInput(binding.includeSendComment.etCommentContent.getContext(),binding.includeSendComment.etCommentContent);
                 commentId = id;
                 toUser = toUserid;

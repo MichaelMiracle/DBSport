@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0.5dp"
-            android:background="@color/main_color"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="20dp">
@@ -46,7 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:ItemBar_Left_Icon="邮箱:"
-            app:ItemBar_RightVisibility="gone" />
+            app:ItemBar_RightVisibility="gone"
+            android:visibility="gone"
+            />
 
         <com.miracle.base.view.ItemBar
             android:id="@+id/ibModifyPassword"

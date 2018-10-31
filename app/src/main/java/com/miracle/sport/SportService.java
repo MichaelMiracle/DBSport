@@ -132,9 +132,10 @@ public interface SportService {
 
     /**
      * 评论点赞
+     * @POST("home/sport/click")
      */
     @Headers({"BaseUrl:zh"})
-    @POST("home/sport/click")
+    @POST("home/comment/click")
     Call<ZResponse<String>> setClickClass(@Query("createid") int createid, @Query("click") int click, @Query("type") String type);
 
     /**
