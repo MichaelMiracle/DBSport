@@ -7,12 +7,9 @@ import com.miracle.base.BaseActivity;
 import com.miracle.base.GOTO;
 import com.miracle.base.network.ZClient;
 import com.miracle.databinding.ActivitySportMainBinding;
-import com.miracle.michael.doudizhu.fragment.DDZF1;
-import com.miracle.michael.doudizhu.fragment.DDZF2;
-import com.miracle.michael.doudizhu.fragment.DDZF4;
-import com.miracle.michael.football.fragment.FootballF3;
 import com.miracle.sport.community.fragment.CommunityFragment;
 import com.miracle.sport.home.fragment.HomeFragment;
+import com.miracle.sport.me.fragment.MeFragment;
 import com.miracle.sport.schedule.fragment.FragClubeTypeChannelVP;
 
 /**
@@ -27,7 +24,7 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
     @Override
     public void initView() {
         hideTitle();
-        binding.zRadiogroup.setUp(getSupportFragmentManager(), R.id.container, new HomeFragment(), new FragClubeTypeChannelVP(), new CommunityFragment(), new DDZF4());
+        binding.zRadiogroup.setUp(getSupportFragmentManager(), R.id.container, new HomeFragment(), new FragClubeTypeChannelVP(), new CommunityFragment(), new MeFragment());
     }
 
     @Override

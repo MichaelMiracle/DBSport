@@ -6,15 +6,12 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
-import com.miracle.base.AppConfig;
 import com.miracle.base.BaseActivity;
 import com.miracle.base.network.PageLoadCallback;
 import com.miracle.base.network.ZClient;
-import com.miracle.base.network.ZService;
 import com.miracle.databinding.SwipeRecyclerBinding;
-import com.miracle.michael.doudizhu.activity.DDZNewsDetailActivity;
-import com.miracle.michael.lottery.adapter.LotteryMyCollectionAdapter;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.activity.PostDetailActivity;
 import com.miracle.sport.community.adapter.PostListAdapter;
 
 public class DDZMyPostActivity extends BaseActivity<SwipeRecyclerBinding> {
@@ -59,7 +56,7 @@ public class DDZMyPostActivity extends BaseActivity<SwipeRecyclerBinding> {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                startActivity(new Intent(mContext, DDZNewsDetailActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+                startActivity(new Intent(mContext, PostDetailActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
             }
         });
     }
