@@ -76,7 +76,7 @@ public class FragClubePostJF extends HandleFragment<FragClubePostBinding> {
                 setUIStatus(ShowStat.ERR);
             }
         };
-        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
 
         reqData();
     }

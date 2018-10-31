@@ -1,6 +1,7 @@
 package com.miracle.sport.schedule.fragment;
 
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -94,7 +95,8 @@ public class FragClubePostSS extends HandleFragment<FragClubePostBinding> {
                 setUIStatus(ShowStat.ERR);
             }
         };
-        callback.setSwipeRefreshLayout(binding.swipeRefreshLayout);
+        callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);
+        binding.swipeRefreshLayout.setOnRefreshListener(callback);
         reqData();
     }
 

@@ -52,6 +52,7 @@
     <color name="main_color_end">#ddd2292a</color>
     <color name="main_color_half">#88D2292A</color>
     <color name="titlebar_color">#E6E6FA</color>
-    <color name="main_bg_color">#E3E3E3</color>
+    <color name="main_bg_color">#f2f0f0</color>
+    <color name="main_bg_color2">#E3E3E3</color>
 
 </resources>

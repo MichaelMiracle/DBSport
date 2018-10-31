@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:background="#"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.miracle.base.view.TitleBar
+                    android:id="@+id/titleBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:TitleBar_LeftText="@string/icon_side_menu"
+                    app:TitleBar_Title="我的" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_marginTop="13dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="13dp"
+                    android:layout_width="match_parent"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="#e5e5e5"
+                    android:layout_height="76dp">
+
+                    <LinearLayout
+                        android:padding="6dp"
+                        android:id="@+id/llMe"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <com.miracle.base.view.CircleImageView
+                                    android:id="@+id/ivHeadImg"
+                                    android:adjustViewBounds="false"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@mipmap/default_head" />
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_marginLeft="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="设置昵称"
+                                    android:textColor="#000"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center_horizontal"
+                                    android:maxLines="1"
+                                    android:text="速度发沙发沙发斯蒂芬"
+                                    android:textColor="#ff7200"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <com.miracle.base.view.IconFontTextView
+                            android:id="@+id/bianji_btn"
+                            android:background="@mipmap/bianji_iocn"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp">
+
+
+                    <TextView
+                        android:id="@+id/ibBailManage"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="我的收藏"
+                        android:gravity="center"
+                        android:drawableTop="@mipmap/jiemian001_03"
+                        />
+
+                    <!--<com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibBailManage"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="我的收藏"
+                        app:ZRadioButton_Icon="@string/icon_my_collections"
+                        />-->
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibmyCircle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="我的圈子"
+                        app:ZRadioButton_Icon="@string/icon_my_collections"
+                        />
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibmyPost"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="我的发帖"
+                        app:ZRadioButton_Icon="@string/icon_my_collections"
+                        />
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibmyReply"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        app:ZRadioButton_Text="我的回帖"
+                        app:ZRadioButton_Icon="@string/icon_my_collections"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        android:layout_height="match_parent">
+                    </com.miracle.base.view.zradiogroup.ZRadioButton>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="54dp">
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibCustomerService"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="客服"
+                        app:ZRadioButton_Icon="@string/icon_customer_service"
+                        />
+
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibShare"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="分享"
+                        app:ZRadioButton_Icon="@string/icon_share"
+                        />
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibSettings"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="@string/text_settings"
+                        app:ZRadioButton_Icon="@string/icon_settings"
+                        />
+
+                    <com.miracle.base.view.zradiogroup.ZRadioButton
+                        android:id="@+id/ibAboutUs"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        app:ZRadioButton_IconTextSize="22sp"
+                        app:ZRadioButton_Text="@string/text_about_us"
+                        app:ZRadioButton_Icon="@string/icon_about_us"
+                        />
+
+                </LinearLayout>
+
+                <com.miracle.base.view.zradiogroup.ZRadioButton
+                    android:id="@+id/ibGroupChat"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    app:ZRadioButton_IconTextSize="22sp"
+                    app:ZRadioButton_Text="聊天室"
+                    android:visibility="gone"
+                    app:ZRadioButton_Icon="@string/icon_chatroom"
+                    />
+                <com.miracle.base.view.zradiogroup.ZRadioButton
+                    android:visibility="gone"
+                    android:id="@+id/ibOrderManage"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    app:ZRadioButton_Text="赛事分析"
+                    app:ZRadioButton_Icon="@string/icon_order_manage"
+                    app:ZRadioButton_IconTextSize="22sp"
+                    android:layout_height="match_parent">
+                </com.miracle.base.view.zradiogroup.ZRadioButton>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>
