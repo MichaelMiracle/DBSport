@@ -83,7 +83,7 @@
             android:layout_marginTop="300dp"
             android:background="@drawable/shape_base_btn"
             android:text="@string/exit"
-            android:textColor="@color/main_text_color"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 </layout>

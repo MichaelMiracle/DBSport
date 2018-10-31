@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!--背景渐变色-->
     <gradient
-        android:endColor="@color/main_color_end"
-        android:startColor="@color/main_color" />
+        android:endColor="@color/white"
+        android:startColor="@color/white" />
 </shape>
