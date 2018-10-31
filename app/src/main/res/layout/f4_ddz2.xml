@@ -84,7 +84,7 @@
                                     android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:maxLines="1"
-                                    android:text="速度发沙发沙发斯蒂芬"
+                                    android:text="--"
                                     android:textColor="#ff7200"
                                     android:textSize="12sp" />
                             </LinearLayout>

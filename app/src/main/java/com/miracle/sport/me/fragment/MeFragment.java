@@ -16,6 +16,7 @@ import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
 import com.miracle.base.network.ZService;
 import com.miracle.base.util.CommonUtils;
+import com.miracle.databinding.F4Ddz2Binding;
 import com.miracle.databinding.F4DdzBinding;
 import com.miracle.sport.me.activity.DDZMyCircleActivity;
 import com.miracle.sport.me.activity.DDZMyPostActivity;
@@ -23,13 +24,13 @@ import com.miracle.sport.me.activity.DDZMyReplyActivity;
 import com.miracle.sport.me.activity.MyCollectionsActivity;
 import com.wx.goodview.GoodView;
 
-public class MeFragment extends BaseFragment<F4DdzBinding> {
+public class MeFragment extends BaseFragment<F4Ddz2Binding> {
     private UserInfoBean userInfo;
     private GoodView goodView;
 
     @Override
     public int getLayout() {
-        return R.layout.f4_ddz;
+        return R.layout.f4_ddz2;
     }
 
     @Override
