@@ -473,7 +473,9 @@
         <activity android:name=".sport.me.activity.MyCollectionsActivity" />
         <activity
             android:name=".sport.community.activity.PostDetailActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".sport.home.activity.SimpleWebCommentActivity"
             android:windowSoftInputMode="stateHidden"
             />

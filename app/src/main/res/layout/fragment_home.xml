@@ -21,7 +21,7 @@
     <com.miracle.base.view.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:TitleBar_Background="@color/main_color"
+        app:TitleBar_Background="@color/colorPrimaryDark"
         app:TitleBar_LeftVisibility="invisible"
         app:TitleBar_TextColor="@color/white"
         app:TitleBar_Title="资讯" />
