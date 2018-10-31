@@ -27,6 +27,8 @@ public class PostListAdapter extends RecyclerViewAdapter<PostBean> {
 
     @Override
     protected void convert(BaseViewHolder helper, PostBean item) {
+        helper.addOnClickListener(R.id.tvLike);
+
         helper.setText(R.id.tvTitle, item.getTitle());
         helper.setText(R.id.tvTime, item.getAdd_time());
         helper.setText(R.id.tvLike, item.getClick_num() + "");

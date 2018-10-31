@@ -4,6 +4,8 @@ import com.miracle.base.network.ZResponse;
 import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.community.bean.CircleBean;
 import com.miracle.sport.community.bean.PostBean;
+import com.miracle.sport.community.bean.PostCommentBean;
+import com.miracle.sport.community.bean.PostDetailBean;
 import com.miracle.sport.home.bean.ChannerlKey;
 import com.miracle.sport.home.bean.Football;
 import com.miracle.sport.home.bean.HomeBean;
@@ -49,7 +51,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/circleDetail")
-    Call<ZResponse> getPostDetail(@Query("id") int id);
+    Call<ZResponse<PostDetailBean>> getPostDetail(@Query("id") int id);
 
 
     /**
@@ -59,6 +61,21 @@ public interface SportService {
     @Multipart
     @POST("home/sport/sendCircle")
     Call<ZResponse> publishPost(@Query("class_id") int class_id, @Query("title") String title, @Query("content") String content, @Part() List<MultipartBody.Part> imgs);
+
+
+    /**
+     * 帖子评论列表
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/commentList")
+    Call<ZResponse<List<PostCommentBean>>> getPostCommentList(@Query("createid") int id);
+
+    /**
+     * 帖子发评论
+     */
+    @Headers({"BaseUrl:zh"})
+    @POST("home/sport/comment")
+    Call<ZResponse<List<PostCommentBean>>> sendPostComment(@Query("createid") int id, @Query("content") String content);
 
 
     /**
@@ -103,14 +120,15 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/click")
-    Call<ZResponse<String>> setClickClass(@Query("createid") int createid,@Query("click") int click,@Query("type") String type);
+    Call<ZResponse<String>> setClickClass(@Query("createid") int createid, @Query("click") int click, @Query("type") String type);
 
     /**
      * 收藏接口
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/collect")
-    Call<ZResponse<String>> likeOrDislike(@Query("createid") int createid,@Query("type") String type);
+    Call<ZResponse<String>> likeOrDislike(@Query("createid") int createid, @Query("type") String type);
+
     /**
      * 我的收藏接口
      */

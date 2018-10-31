@@ -167,8 +167,7 @@
         <!--android:theme="@style/horizontal_slide"-->
         <activity
             android:name=".base.im.ui.GroupDetailsActivity"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
         <!-- 群组列表 -->
         <activity
             android:name=".base.im.ui.GroupsActivity"
@@ -456,9 +455,7 @@
             android:name=".sport.home.activity.SimpleWebActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            >
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <!--我的发帖-->
         <activity android:name=".sport.me.activity.DDZMyPostActivity" />
         <!--我的回帖-->
@@ -474,6 +471,9 @@
             android:name=".sport.community.activity.CircleActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".sport.me.activity.MyCollectionsActivity" />
+        <activity
+            android:name=".sport.community.activity.PostDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">
