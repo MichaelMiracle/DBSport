@@ -1,23 +1,26 @@
 package com.miracle.sport.me.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
 import com.miracle.base.BaseActivity;
-import com.miracle.base.network.PageLoadCallback;
+import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
+import com.miracle.base.network.ZResponse;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.databinding.SwipeRecyclerBinding;
-import com.miracle.michael.doudizhu.activity.DDZNewsDetailActivity;
-import com.miracle.michael.lottery.adapter.LotteryMyCollectionAdapter;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.activity.CircleActivity;
+import com.miracle.sport.community.bean.MyCircleBean;
+import com.miracle.sport.me.adapter.MyCircleAdapter;
+
+import java.util.List;
 
 public class DDZMyCircleActivity extends BaseActivity<SwipeRecyclerBinding> {
 
-    private LotteryMyCollectionAdapter mAdapter;
-    private PageLoadCallback callBack;
+    private MyCircleAdapter mAdapter;
 
     @Override
     public int getLayout() {
@@ -27,35 +30,38 @@ public class DDZMyCircleActivity extends BaseActivity<SwipeRecyclerBinding> {
     @Override
     public void initView() {
         setTitle("我的圈子");
-        binding.recyclerView.setAdapter(mAdapter = new LotteryMyCollectionAdapter(mContext));
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        initCallback();
+        setRight(CommonUtils.getString(R.string.icon_add), CommonUtils.getColor(R.color.white));
+        setRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, CircleActivity.class));
+            }
+        });
+        binding.recyclerView.setAdapter(mAdapter = new MyCircleAdapter());
     }
 
-    private void initCallback() {
-        callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {
-            @Override
-            public void requestAction(int page, int limit) {
-                ZClient.getService(SportService.class).getMyCircleList().enqueue(callBack);
-            }
-        };
-        callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
-    }
 
     @Override
     public void onResume() {
         super.onResume();
-        mAdapter.setNewData(null);
-        callBack.onRefresh();
+        reqMyCircle();
     }
 
+    private void reqMyCircle() {
+        ZClient.getService(SportService.class).getMyCircleList().enqueue(new ZCallback<ZResponse<List<MyCircleBean>>>(binding.swipeRefreshLayout) {
+            @Override
+            public void onSuccess(ZResponse<List<MyCircleBean>> data) {
+                mAdapter.setNewData(data.getData());
+            }
+        });
+    }
 
     @Override
     public void initListener() {
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, DDZNewsDetailActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+            public void onRefresh() {
+                reqMyCircle();
             }
         });
     }
