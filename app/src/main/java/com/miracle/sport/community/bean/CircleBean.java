@@ -65,6 +65,15 @@ public class CircleBean {
         private String name;
         private int pid;
         private int follow;
+        private String pic;
+
+        public String getPic() {
+            return pic;
+        }
+
+        public void setPic(String pic) {
+            this.pic = pic;
+        }
 
         public int getId() {
             return id;

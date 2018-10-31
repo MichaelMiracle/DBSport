@@ -35,6 +35,15 @@ public class CircleActivity extends BaseActivity<ActivityCircleBinding> {
     public void initView() {
         setTitle("圈子");
         isFromPublishPostActivity = getIntent().getBooleanExtra("isFromPublishPostActivity", false);
+        if (!isFromPublishPostActivity) {
+            setRight("完成");
+            setRightClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
         mAdapter = new CircleIndexAdapter(mContext);
         binding.indexListView.setAdapter(mAdapter);
         circleFragment = (CircleFragment) getSupportFragmentManager().findFragmentById(R.id.circleFragment);

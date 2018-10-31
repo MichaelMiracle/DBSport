@@ -1,17 +1,26 @@
 package com.miracle.sport.community.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.network.GlideApp;
+import com.miracle.base.network.ZCallback;
+import com.miracle.base.network.ZClient;
+import com.miracle.base.network.ZResponse;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.FragmentCommunityBinding;
+import com.miracle.sport.SportService;
+import com.miracle.sport.community.activity.CircleActivity;
 import com.miracle.sport.community.activity.PublishPostActivity;
+import com.miracle.sport.community.bean.MyCircleBean;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
@@ -27,6 +36,8 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     private HotPostFragment hotPostFragment;
     private LatestPostFragment latestPostFragment;
 
+    private MyCircleAdapter myCircleAdapter;
+
     @Override
     public int getLayout() {
         return R.layout.fragment_community;
@@ -35,7 +46,27 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     @Override
     public void initView() {
         binding.zRadiogroup.setUp(getChildFragmentManager(), R.id.containerCommunity, hotPostFragment = new HotPostFragment(), latestPostFragment = new LatestPostFragment());
+
+        binding.recyclerView.setAdapter(myCircleAdapter = new MyCircleAdapter());
+        myCircleAdapter.addData((MyCircleBean) null);
         initBanner();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reqMyCircle();
+    }
+
+    private void reqMyCircle() {
+        myCircleAdapter.setNewData(null);
+        myCircleAdapter.addData((MyCircleBean) null);
+        ZClient.getService(SportService.class).getMyCircleList().enqueue(new ZCallback<ZResponse<List<MyCircleBean>>>() {
+            @Override
+            public void onSuccess(ZResponse<List<MyCircleBean>> data) {
+                myCircleAdapter.addData(0, data.getData());
+            }
+        });
     }
 
     private void initBanner() {
@@ -77,8 +108,27 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
                     hotPostFragment.refresh();
                 if (latestPostFragment.isVisible())
                     latestPostFragment.refresh();
+                reqMyCircle();
             }
         });
+
+        myCircleAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.rlAdd) {
+                    startActivityForResult(new Intent(mContext, CircleActivity.class),233);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==233 &&resultCode==Activity.RESULT_OK)
+        {
+
+        }
+
     }
 
     @Override
@@ -89,4 +139,26 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     public SwipeRefreshLayout getSwipeRefreshLayout() {
         return binding.swipeRefreshLayout;
     }
+
+    private final class MyCircleAdapter extends BaseQuickAdapter<MyCircleBean, BaseViewHolder> {
+
+        MyCircleAdapter() {
+            super(R.layout.item_mycircle);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder helper, MyCircleBean bean) {
+            helper.addOnClickListener(R.id.rlAdd);
+            if (bean == null) {
+                helper.setGone(R.id.rlItem, false);
+                helper.setGone(R.id.rlAdd, true);
+            } else {
+                helper.setGone(R.id.rlItem, true);
+                helper.setGone(R.id.rlAdd, false);
+                helper.setText(R.id.tvCircleName, bean.getName());
+                GlideApp.with(mContext).load(bean.getPic()).placeholder(R.mipmap.defaule_img).into((ImageView) helper.getView(R.id.ivCircleLogo));
+            }
+        }
+    }
+
 }

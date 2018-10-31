@@ -1,8 +1,11 @@
 package com.miracle.sport.community.adapter;
 
+import android.widget.ImageView;
+
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
 import com.miracle.base.adapter.RecyclerViewAdapter;
+import com.miracle.base.network.GlideApp;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.sport.community.bean.CircleBean;
 
@@ -30,6 +33,7 @@ public class CircleChildAdapter extends RecyclerViewAdapter<CircleBean.ChildBean
             helper.setGone(R.id.tvCheck, true);
             helper.setText(R.id.tvCheck, item.getFollow() == 1 ? selectOn : selectOff);
         }
+        GlideApp.with(mContext).load(item.getPic()).placeholder(R.mipmap.defaule_img).into((ImageView) helper.getView(R.id.ivCircleLogo));
     }
 
     public void setBoolean(boolean isFromPublishPostActivity) {

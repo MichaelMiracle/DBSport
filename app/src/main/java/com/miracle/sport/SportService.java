@@ -4,6 +4,7 @@ import com.miracle.base.network.ZResponse;
 import com.miracle.michael.common.bean.ArticleDetailBean;
 import com.miracle.michael.common.bean.NewsDetailBean;
 import com.miracle.sport.community.bean.CircleBean;
+import com.miracle.sport.community.bean.MyCircleBean;
 import com.miracle.sport.community.bean.PostBean;
 import com.miracle.sport.community.bean.PostCommentBean;
 import com.miracle.sport.community.bean.PostDetailBean;
@@ -26,13 +27,6 @@ import retrofit2.http.Query;
  * Created by Michael on 2018/10/27 19:50 (星期六)
  */
 public interface SportService {
-
-    /**
-     * 我的圈子
-     */
-    @Headers({"BaseUrl:zh"})
-    @POST("home/sport/myCircle")
-    Call<ZResponse> getMyCircle(@Query("id") int id);
 
 
     /**
@@ -193,7 +187,7 @@ public interface SportService {
      */
     @Headers({"BaseUrl:zh"})
     @POST("home/sport/myCircle")
-    Call<ZResponse<List<HomeCommentBean>>> getMyCircleList();
+    Call<ZResponse<List<MyCircleBean>>> getMyCircleList();
 
     /**
      * 圈子列表
