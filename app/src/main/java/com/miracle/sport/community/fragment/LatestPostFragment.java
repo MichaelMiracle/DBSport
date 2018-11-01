@@ -21,6 +21,7 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
 
     private PostListAdapter mAdapter;
     private PageLoadCallback callBack;
+    private Integer circleId;
 
 
     @Override
@@ -41,7 +42,7 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
         callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {
             @Override
             public void requestAction(int page, int pageSize) {
-                ZClient.getService(SportService.class).getPostList(null, null, page, pageSize).enqueue(callBack);
+                ZClient.getService(SportService.class).getPostList(null, circleId, page, pageSize).enqueue(callBack);
             }
         };
         callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
@@ -65,10 +66,16 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
     @Override
     public void onResume() {
         super.onResume();
-        callBack.onRefresh();
+        refresh();
     }
 
     public void refresh() {
         callBack.onRefresh();
+    }
+
+    public void setCircleId(int id) {
+        circleId = id;
+        mAdapter.setNewData(null);
+        refresh();
     }
 }
