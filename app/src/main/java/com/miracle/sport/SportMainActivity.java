@@ -13,7 +13,7 @@ import com.miracle.sport.me.fragment.MeFragment;
 import com.miracle.sport.schedule.fragment.FragClubeTypeChannelVP;
 
 /**
- * Created by Michael on 2018/10/27 13:32 (星期六)
+ * Created by Michael on 2018/10/27 13:32 (星期六) <->w<->
  */
 public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
     @Override
