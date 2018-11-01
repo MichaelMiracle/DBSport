@@ -1,9 +1,9 @@
 package com.miracle.sport.community.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +15,7 @@ import com.miracle.base.network.GlideApp;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
 import com.miracle.databinding.FragmentCommunityBinding;
 import com.miracle.sport.SportService;
@@ -36,7 +37,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     private HotPostFragment hotPostFragment;
     private LatestPostFragment latestPostFragment;
 
-    private MyCircleAdapter myCircleAdapter;
+    private MyCircleAdapterWithAdd myCircleAdapter;
 
     @Override
     public int getLayout() {
@@ -46,9 +47,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     @Override
     public void initView() {
         binding.zRadiogroup.setUp(getChildFragmentManager(), R.id.containerCommunity, hotPostFragment = new HotPostFragment(), latestPostFragment = new LatestPostFragment());
-
-        binding.recyclerView.setAdapter(myCircleAdapter = new MyCircleAdapter());
-        myCircleAdapter.addData((MyCircleBean) null);
+        binding.recyclerView.setAdapter(myCircleAdapter = new MyCircleAdapterWithAdd());
         initBanner();
     }
 
@@ -59,6 +58,9 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     }
 
     private void reqMyCircle() {
+        if (TextUtils.isEmpty(CommonUtils.getUserId())) {
+            return;
+        }
         myCircleAdapter.setNewData(null);
         myCircleAdapter.addData((MyCircleBean) null);
         ZClient.getService(SportService.class).getMyCircleList().enqueue(new ZCallback<ZResponse<List<MyCircleBean>>>() {
@@ -116,34 +118,39 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.rlAdd) {
-                    startActivityForResult(new Intent(mContext, CircleActivity.class),233);
+                    startActivity(new Intent(mContext, CircleActivity.class));
                 }
             }
         });
+
+        myCircleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                hotPostFragment.switchCircleId(myCircleAdapter.getItem(position).getId());
+                latestPostFragment.switchCircleId(myCircleAdapter.getItem(position).getId());
+            }
+        });
+        binding.ibMyCircle.setOnClickListener(this);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==233 &&resultCode==Activity.RESULT_OK)
-        {
-
-        }
-
-    }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.ibMyCircle:
+                startActivity(new Intent(mContext, CircleActivity.class));
+                break;
+        }
     }
 
     public SwipeRefreshLayout getSwipeRefreshLayout() {
         return binding.swipeRefreshLayout;
     }
 
-    private final class MyCircleAdapter extends BaseQuickAdapter<MyCircleBean, BaseViewHolder> {
+    private final class MyCircleAdapterWithAdd extends BaseQuickAdapter<MyCircleBean, BaseViewHolder> {
 
-        MyCircleAdapter() {
-            super(R.layout.item_mycircle);
+        MyCircleAdapterWithAdd() {
+            super(R.layout.item_mycircle_withadd);
         }
 
         @Override

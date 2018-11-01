@@ -10,6 +10,7 @@ import com.miracle.base.network.PageLoadCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.databinding.FragmentHotpostBinding;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.activity.CommunityActivity;
 import com.miracle.sport.community.activity.PostDetailActivity;
 import com.miracle.sport.community.adapter.PostListAdapter;
 
@@ -22,6 +23,14 @@ public class HotPostFragment extends BaseFragment<FragmentHotpostBinding> {
     private PostListAdapter mAdapter;
     private PageLoadCallback callBack;
 
+    private Integer circleId;
+
+    private boolean isCommunityActivity;
+
+    public HotPostFragment setParent(boolean isCommunityActivity) {
+        this.isCommunityActivity = isCommunityActivity;
+        return this;
+    }
 
     @Override
     public int getLayout() {
@@ -30,21 +39,22 @@ public class HotPostFragment extends BaseFragment<FragmentHotpostBinding> {
 
     @Override
     public void initView() {
-
         binding.recyclerView.setAdapter(mAdapter = new PostListAdapter());
         initCallback();
-
-
     }
 
     private void initCallback() {
         callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {
             @Override
             public void requestAction(int page, int pageSize) {
-                ZClient.getService(SportService.class).getPostList("rm", null, page, pageSize).enqueue(callBack);
+                ZClient.getService(SportService.class).getPostList("rm", circleId, page, pageSize).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
+        if (isCommunityActivity) {
+            callBack.setSwipeRefreshLayout(((CommunityActivity) getActivity()).getSwipeRefreshLayout());
+        } else {
+            callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
+        }
     }
 
     @Override
@@ -65,10 +75,20 @@ public class HotPostFragment extends BaseFragment<FragmentHotpostBinding> {
     @Override
     public void onResume() {
         super.onResume();
-        callBack.onRefresh();
+        refresh();
     }
 
     public void refresh() {
         callBack.onRefresh();
+    }
+
+    public void setCircleId(int id) {
+        circleId = id;
+    }
+
+    public void switchCircleId(int id) {
+        circleId = id;
+        mAdapter.setNewData(null);
+        refresh();
     }
 }
