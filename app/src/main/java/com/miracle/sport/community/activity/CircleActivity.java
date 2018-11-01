@@ -51,13 +51,15 @@ public class CircleActivity extends BaseActivity<ActivityCircleBinding> {
         reqData();
     }
 
+    private int mPosition;
+
     public void reqData() {
         ZClient.getService(SportService.class).getCircleList().enqueue(new ZCallback<ZResponse<List<CircleBean>>>() {
             @Override
             public void onSuccess(ZResponse<List<CircleBean>> data) {
                 mAdapter.update(data.getData());
-                mAdapter.setSelectPosition(0);
-                circleFragment.setData(mAdapter.getItem(0).getChild());
+                mAdapter.setSelectPosition(mPosition);
+                circleFragment.setData(mAdapter.getItem(mPosition).getChild());
             }
         });
     }
@@ -69,6 +71,7 @@ public class CircleActivity extends BaseActivity<ActivityCircleBinding> {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
                 mAdapter.setSelectPosition(position);
                 circleFragment.setData(mAdapter.getItem(position).getChild());
+                mPosition = position;
             }
         });
     }
