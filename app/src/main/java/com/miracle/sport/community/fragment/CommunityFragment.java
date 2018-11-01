@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.miracle.R;
 import com.miracle.base.BaseFragment;
+import com.miracle.base.GOTO;
 import com.miracle.base.network.GlideApp;
 import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
@@ -100,7 +101,11 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         binding.titleBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext, PublishPostActivity.class));
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                } else {
+                    startActivity(new Intent(mContext, PublishPostActivity.class));
+                }
             }
         });
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -138,7 +143,11 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ibMyCircle:
-                startActivity(new Intent(mContext, CircleActivity.class));
+                if (CommonUtils.getUser() == null) {
+                    GOTO.LoginActivity();
+                } else {
+                    startActivity(new Intent(mContext, CircleActivity.class));
+                }
                 break;
         }
     }
