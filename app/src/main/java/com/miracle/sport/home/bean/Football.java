@@ -31,6 +31,7 @@ public class Football {
     private String[] images;
     private int click_num;
     private int comment_num;
+    private String add_time;
 
 
     public int getId() {
@@ -143,5 +144,13 @@ public class Football {
 
     public void setComment_num(int comment_num) {
         this.comment_num = comment_num;
+    }
+
+    public String getAdd_time() {
+        return add_time;
+    }
+
+    public void setAdd_time(String add_time) {
+        this.add_time = add_time;
     }
 }
