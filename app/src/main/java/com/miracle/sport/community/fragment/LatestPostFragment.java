@@ -10,6 +10,7 @@ import com.miracle.base.network.PageLoadCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.databinding.FragmentHotpostBinding;
 import com.miracle.sport.SportService;
+import com.miracle.sport.community.activity.CommunityActivity;
 import com.miracle.sport.community.activity.PostDetailActivity;
 import com.miracle.sport.community.adapter.PostListAdapter;
 
@@ -23,6 +24,12 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
     private PageLoadCallback callBack;
     private Integer circleId;
 
+    private boolean isCommunityActivity;
+
+    public LatestPostFragment setParent(boolean isCommunityActivity) {
+        this.isCommunityActivity = isCommunityActivity;
+        return this;
+    }
 
     @Override
     public int getLayout() {
@@ -31,11 +38,8 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
 
     @Override
     public void initView() {
-
         binding.recyclerView.setAdapter(mAdapter = new PostListAdapter());
         initCallback();
-
-
     }
 
     private void initCallback() {
@@ -45,7 +49,11 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
                 ZClient.getService(SportService.class).getPostList(null, circleId, page, pageSize).enqueue(callBack);
             }
         };
-        callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
+        if (isCommunityActivity) {
+            callBack.setSwipeRefreshLayout(((CommunityActivity) getActivity()).getSwipeRefreshLayout());
+        } else {
+            callBack.setSwipeRefreshLayout(((CommunityFragment) getParentFragment()).getSwipeRefreshLayout());
+        }
     }
 
     @Override
@@ -74,6 +82,10 @@ public class LatestPostFragment extends BaseFragment<FragmentHotpostBinding> {
     }
 
     public void setCircleId(int id) {
+        circleId = id;
+    }
+
+    public void switchCircleId(int id) {
         circleId = id;
         mAdapter.setNewData(null);
         refresh();

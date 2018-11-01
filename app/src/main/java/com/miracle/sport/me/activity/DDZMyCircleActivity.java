@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
 import com.miracle.base.BaseActivity;
 import com.miracle.base.network.ZCallback;
@@ -13,6 +14,7 @@ import com.miracle.base.util.CommonUtils;
 import com.miracle.databinding.SwipeRecyclerBinding;
 import com.miracle.sport.SportService;
 import com.miracle.sport.community.activity.CircleActivity;
+import com.miracle.sport.community.activity.CommunityActivity;
 import com.miracle.sport.community.bean.MyCircleBean;
 import com.miracle.sport.me.adapter.MyCircleAdapter;
 
@@ -62,6 +64,12 @@ public class DDZMyCircleActivity extends BaseActivity<SwipeRecyclerBinding> {
             @Override
             public void onRefresh() {
                 reqMyCircle();
+            }
+        });
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext, CommunityActivity.class).putExtra("MyCircle", mAdapter.getItem(position)));
             }
         });
     }

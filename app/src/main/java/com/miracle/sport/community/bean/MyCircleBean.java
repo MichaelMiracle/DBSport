@@ -1,9 +1,11 @@
 package com.miracle.sport.community.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Michael on 2018/10/31 19:31 (星期三)
  */
-public class MyCircleBean {
+public class MyCircleBean  implements Serializable {
 
     /**
      * name : 德甲

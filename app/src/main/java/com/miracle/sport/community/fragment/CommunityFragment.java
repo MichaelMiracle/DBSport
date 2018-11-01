@@ -126,8 +126,8 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         myCircleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                hotPostFragment.setCircleId(myCircleAdapter.getItem(position).getId());
-                latestPostFragment.setCircleId(myCircleAdapter.getItem(position).getId());
+                hotPostFragment.switchCircleId(myCircleAdapter.getItem(position).getId());
+                latestPostFragment.switchCircleId(myCircleAdapter.getItem(position).getId());
             }
         });
         binding.ibMyCircle.setOnClickListener(this);
