@@ -94,8 +94,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
                     buttonMore.setVisibility(View.GONE);
                     buttonSend.setVisibility(View.VISIBLE);
                 } else {
-                    buttonMore.setVisibility(View.VISIBLE);
-                    buttonSend.setVisibility(View.GONE);
+                    buttonMore.setVisibility(View.GONE);
+                    buttonSend.setVisibility(View.VISIBLE);
                 }
 
                 if (listener != null) {
@@ -264,8 +264,8 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         // buttonSend.setVisibility(View.VISIBLE);
         buttonPressToSpeak.setVisibility(View.GONE);
         if (TextUtils.isEmpty(editText.getText())) {
-            buttonMore.setVisibility(View.VISIBLE);
-            buttonSend.setVisibility(View.GONE);
+            buttonMore.setVisibility(View.GONE);
+            buttonSend.setVisibility(View.VISIBLE);
         } else {
             buttonMore.setVisibility(View.GONE);
             buttonSend.setVisibility(View.VISIBLE);
