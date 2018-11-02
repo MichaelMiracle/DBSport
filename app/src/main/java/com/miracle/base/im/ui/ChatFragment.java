@@ -18,7 +18,6 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
@@ -272,18 +271,18 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 
     @Override
     public void onEnterToChatDetails() {
-        if (chatType == Constant.CHATTYPE_GROUP) {
-            EMGroup group = EMClient.getInstance().groupManager().getGroup(toChatUsername);
-            if (group == null) {
-                Toast.makeText(getActivity(), R.string.gorup_not_found, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            startActivityForResult(
-                    (new Intent(getActivity(), GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
-                    REQUEST_CODE_GROUP_DETAIL);
-        }else if(chatType == Constant.CHATTYPE_CHATROOM){
-        	startActivityForResult(new Intent(getActivity(), ChatRoomDetailsActivity.class).putExtra("roomId", toChatUsername), REQUEST_CODE_GROUP_DETAIL);
-        }
+//        if (chatType == Constant.CHATTYPE_GROUP) {
+//            EMGroup group = EMClient.getInstance().groupManager().getGroup(toChatUsername);
+//            if (group == null) {
+//                Toast.makeText(getActivity(), R.string.gorup_not_found, Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            startActivityForResult(
+//                    (new Intent(getActivity(), GroupDetailsActivity.class).putExtra("groupId", toChatUsername)),
+//                    REQUEST_CODE_GROUP_DETAIL);
+//        }else if(chatType == Constant.CHATTYPE_CHATROOM){
+//        	startActivityForResult(new Intent(getActivity(), ChatRoomDetailsActivity.class).putExtra("roomId", toChatUsername), REQUEST_CODE_GROUP_DETAIL);
+//        }
     }
 
     @Override

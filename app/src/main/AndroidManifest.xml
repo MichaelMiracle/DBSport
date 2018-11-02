@@ -481,6 +481,10 @@
         <activity
             android:name=".sport.community.activity.CommunityActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".michael.common.activity.WebGameActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" />
 
         <!-- 开机自启动服务 -->
         <receiver android:name=".base.im.receiver.StartServiceReceiver">

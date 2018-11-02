@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 >
 
                 <com.miracle.base.view.IconFontTextView
