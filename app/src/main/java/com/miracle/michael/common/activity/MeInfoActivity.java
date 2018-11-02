@@ -108,7 +108,7 @@ public class MeInfoActivity extends BaseActivity<ActivityMeInfoBinding> {
                 break;
 
             case R.id.ibModifyPassword:
-                GOTO.ModifyPasswordActivity();
+                GOTO.ModifyPasswordActivity(mContext);
                 break;
         }
     }

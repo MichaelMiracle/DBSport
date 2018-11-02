@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 popupWindow.showAtLocation(binding.rootView, Gravity.BOTTOM, 0, 0);
                 break;
             case R.id.tvRegister:
-                GOTO.RegisterActivity();
+                GOTO.RegisterActivity(mContext);
                 break;
             case R.id.btLogin:
                 if (binding.etAccount.isEmpty()) {
@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 SQLiteUtil.saveString(SQLiteKey.USER, GsonUtil.obj2Json(user));
                 SQLiteUtil.saveEncryptedString(SQLiteKey.PASSWORD, binding.etPassword.getText());
                 SQLiteUtil.saveBoolean(SQLiteKey.AUTOLOGIN+CommonUtils.getUserId(), true);
-                GOTO.MainActivity();
+                GOTO.MainActivity(mContext);
                 finish();
             }
         });

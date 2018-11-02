@@ -116,7 +116,7 @@ public class ChessF1 extends BaseFragment<F1ChessBinding> {
         binding.tvContactCustomerService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
             }
         });
 

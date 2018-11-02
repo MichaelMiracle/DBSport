@@ -125,7 +125,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
             case R.id.swAutoLogin:
                 if (CommonUtils.getUser() == null) {
                     ToastUtil.toast("您尚未登录，请登录后再进行操作");
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     binding.swAutoLogin.setChecked(false);
                     return;
                 }
@@ -133,7 +133,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> {
             case R.id.swFingerprintLogin:
                 if (CommonUtils.getUser() == null) {
                     ToastUtil.toast("您尚未登录，请登录后再进行操作");
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     binding.swFingerprintLogin.setChecked(false);
                     return;
                 }

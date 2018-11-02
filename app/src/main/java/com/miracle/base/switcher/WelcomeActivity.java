@@ -44,11 +44,13 @@ import retrofit2.http.Path;
  */
 
 public class WelcomeActivity extends Activity {
+    private Context context;
     private String mUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -133,10 +135,10 @@ public class WelcomeActivity extends Activity {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
                     if (fingerPrintDialog.isSuccess()) {
-                        GOTO.MainActivity();
+                        GOTO.MainActivity(context);
                         autoLogin();
                     } else {
-                        GOTO.LoginActivity();
+                        GOTO.LoginActivity(context);
                     }
                     finish();
                 }
@@ -144,7 +146,7 @@ public class WelcomeActivity extends Activity {
             fingerPrintDialog.show();
             return;
         }
-        GOTO.MainActivity();
+        GOTO.MainActivity(context);
         if (SQLiteUtil.getBoolean(SQLiteKey.AUTOLOGIN + CommonUtils.getUserId())) {
             autoLogin();
         }

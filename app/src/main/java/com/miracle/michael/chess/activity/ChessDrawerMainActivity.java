@@ -122,10 +122,10 @@ public class ChessDrawerMainActivity extends BaseActivity<ActivityFootballDrawer
                         fragmentManager.beginTransaction().replace(R.id.container, fragment3).commit();
                         break;
                     case 2:
-                        GOTO.ChatActivity();
+                        GOTO.ChatActivity(mContext);
                         break;
                     case 3:
-                        GOTO.SettingActivity();
+                        GOTO.SettingActivity(mContext);
                         break;
                 }
                 binding.drawerLayout.closeDrawers();
@@ -138,9 +138,9 @@ public class ChessDrawerMainActivity extends BaseActivity<ActivityFootballDrawer
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.FootballMeActivity(userInfo);
+                    GOTO.FootballMeActivity(mContext,userInfo);
                 }
                 break;
         }

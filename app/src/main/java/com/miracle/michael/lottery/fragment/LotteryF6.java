@@ -48,17 +48,17 @@ public class LotteryF6 extends BaseFragment<F6LotteryBinding> {
                 switch (view.getItemInfo().text) {
                     case menu1:
                         if (userInfo == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                         } else {
-                            GOTO.LotteryMyCollectionsActivity();
+                            GOTO.LotteryMyCollectionsActivity(mContext);
                         }
                         break;
                     case menu2:
-                        GOTO.CustomerServiceActivity();
+                        GOTO.CustomerServiceActivity(mContext);
                         break;
                     case menu3:
                         if (userInfo == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                         } else {
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
@@ -68,10 +68,10 @@ public class LotteryF6 extends BaseFragment<F6LotteryBinding> {
                         }
                         break;
                     case menu4:
-                        GOTO.SettingActivity();
+                        GOTO.SettingActivity(mContext);
                         break;
                     case menu5:
-                        GOTO.AboutUsActivity();
+                        GOTO.AboutUsActivity(mContext);
                         break;
                 }
             }
@@ -112,9 +112,9 @@ public class LotteryF6 extends BaseFragment<F6LotteryBinding> {
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.MeInfoActivity(userInfo);
+                    GOTO.MeInfoActivity(mContext,userInfo);
                 }
                 break;
         }

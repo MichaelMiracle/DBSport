@@ -80,7 +80,7 @@ public class LotteryNewsDetailActivity extends BaseActivity<ActivitySimpleWebBin
             @Override
             public void onClick(View v) {
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
                     ZClient.getService(ZService.class).likeOrDislike(AppConfig.APP_TYPE, id).enqueue(likeCallback);
                 }

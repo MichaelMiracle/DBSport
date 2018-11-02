@@ -69,7 +69,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
 
                 <com.miracle.base.view.IconFontTextView
                     android:layout_width="wrap_content"

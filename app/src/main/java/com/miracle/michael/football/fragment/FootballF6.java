@@ -50,17 +50,17 @@ public class FootballF6 extends BaseFragment<F6FootballBinding> {
                 switch (view.getItemInfo().text) {
                     case menu1:
                         if (userInfo == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                         } else {
-                            GOTO.FootballMyCollectionsActivity();
+                            GOTO.FootballMyCollectionsActivity(mContext);
                         }
                         break;
                     case menu2:
-                        GOTO.CustomerServiceActivity();
+                        GOTO.CustomerServiceActivity(mContext);
                         break;
                     case menu3:
                         if (userInfo == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                         } else {
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
@@ -70,10 +70,10 @@ public class FootballF6 extends BaseFragment<F6FootballBinding> {
                         }
                         break;
                     case menu4:
-                        GOTO.SettingActivity();
+                        GOTO.SettingActivity(mContext);
                         break;
                     case menu5:
-                        GOTO.AboutUsActivity();
+                        GOTO.AboutUsActivity(mContext);
                         break;
                 }
             }
@@ -114,9 +114,9 @@ public class FootballF6 extends BaseFragment<F6FootballBinding> {
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.MeInfoActivity(userInfo);
+                    GOTO.MeInfoActivity(mContext,userInfo);
                 }
                 break;
         }

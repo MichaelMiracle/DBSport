@@ -38,10 +38,10 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvContactCustomerService:
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
                 break;
             case R.id.rlGroupChat:
-                GOTO.ChatActivity();
+                GOTO.ChatActivity(mContext);
                 break;
         }
     }

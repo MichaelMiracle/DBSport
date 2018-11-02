@@ -91,17 +91,17 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.MeInfoActivity(userInfo);
+                    GOTO.MeInfoActivity(mContext,userInfo);
                 }
                 break;
             case R.id.ibOrderManage:
-                GOTO.FootballSaiShiFenXiActivity();
+                GOTO.FootballSaiShiFenXiActivity(mContext);
                 break;
             case R.id.ibBailManage:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
                     startActivity(new Intent(mContext, MyCollectionsActivity.class));
@@ -109,7 +109,7 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
                 break;
             case R.id.ibmyCircle:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
                     startActivity(new Intent(mContext, DDZMyCircleActivity.class));
@@ -117,7 +117,7 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
                 break;
             case R.id.ibmyPost:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
                     startActivity(new Intent(mContext, DDZMyPostActivity.class));
@@ -125,25 +125,25 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
                 break;
             case R.id.ibmyReply:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
 //                    GOTO.LotteryMyCollectionsActivity();
                     startActivity(new Intent(mContext, DDZMyReplyActivity.class));
                 }
                 break;
             case R.id.ibSettings:
-                GOTO.SettingActivity();
+                GOTO.SettingActivity(mContext);
                 break;
             case R.id.ibGroupChat:
-                GOTO.ChatActivity();
+                GOTO.ChatActivity(mContext);
                 break;
 
             case R.id.ibCustomerService:
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
                 break;
             case R.id.ibShare:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
@@ -154,7 +154,7 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
                 break;
 
             case R.id.ibAboutUs:
-                GOTO.AboutUsActivity();
+                GOTO.AboutUsActivity(mContext);
                 break;
 
         }

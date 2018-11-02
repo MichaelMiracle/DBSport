@@ -87,7 +87,7 @@ public class DDZF1 extends BaseFragment<F1DdzBinding> {
         binding.tvContactCustomerService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
             }
         });
         callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {

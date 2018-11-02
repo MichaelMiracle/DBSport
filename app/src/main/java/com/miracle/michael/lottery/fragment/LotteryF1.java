@@ -87,7 +87,7 @@ public class LotteryF1 extends BaseFragment<F1LotteryBinding> {
         binding.tvContactCustomerService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
             }
         });
         callBack = new PageLoadCallback(mAdapter, binding.recyclerView) {

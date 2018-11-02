@@ -182,7 +182,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                         }
                     });
                 }else{
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 }
 
             }
@@ -203,7 +203,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                 switch (view.getId()){
                     case R.id.im_click_num:
                         if (CommonUtils.getUser() == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                             return;
                         }
                         if(0 == mAdapter.getItem(position).getClick()){
@@ -218,7 +218,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                     case R.id.im_comment_num:
                     case R.id.tvAuthor:
                         if (CommonUtils.getUser() == null) {
-                            GOTO.LoginActivity();
+                            GOTO.LoginActivity(mContext);
                             return;
                         }
                         commentId = mAdapter.getItem(position).getComment_id();
@@ -246,7 +246,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
             public void onClick(View v) {
 
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
 
@@ -262,7 +262,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
             @Override
             public void onItemClick(int id, String toUserid) {
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
                 CommonUtils.showSoftInput(binding.includeSendComment.etCommentContent.getContext(),binding.includeSendComment.etCommentContent);
@@ -286,7 +286,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
         switch (v.getId()){
             case R.id.iv_good:
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 }else{
                     goodView.setTextInfo("+1", Color.parseColor("#f66467"), 14);
                     goodView.show(v);
@@ -294,7 +294,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
                 break;
             case R.id.img_send:
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
                 int sendId = 0;

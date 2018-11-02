@@ -126,7 +126,7 @@ public class LotteryDrawerMainActivity extends BaseActivity<ActivityLotteryDrawe
                         fragmentManager.beginTransaction().replace(R.id.container, fragment3).commit();
                         break;
                     case 3:
-                        GOTO.ChatActivity();
+                        GOTO.ChatActivity(mContext);
                         break;
                     case 4:
                         fragmentManager.beginTransaction().replace(R.id.container, fragment5).commit();
@@ -142,9 +142,9 @@ public class LotteryDrawerMainActivity extends BaseActivity<ActivityLotteryDrawe
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.MeInfoActivity(userInfo);
+                    GOTO.MeInfoActivity(mContext,userInfo);
                 }
                 break;
         }

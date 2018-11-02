@@ -172,7 +172,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
                         }
                     });
                 }else{
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 }
 
             }
@@ -191,7 +191,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
 
@@ -211,7 +211,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
             public void onClick(View v) {
 
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
 
@@ -238,7 +238,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
         switch (v.getId()){
             case R.id.iv_good:
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 }else{
                     goodView.setTextInfo("+1", Color.parseColor("#f66467"), 14);
                     goodView.show(v);
@@ -246,7 +246,7 @@ public class SimpleWebActivity extends BaseActivity<ActivityHomeWebBinding> {
                 break;
             case R.id.img_send:
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                     return;
                 }
 

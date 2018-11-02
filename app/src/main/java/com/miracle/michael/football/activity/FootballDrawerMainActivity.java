@@ -121,13 +121,13 @@ public class FootballDrawerMainActivity extends BaseActivity<ActivityFootballDra
                         fragmentManager.beginTransaction().replace(R.id.container, fragment3).commit();
                         break;
                     case 2:
-                        GOTO.ChatActivity();
+                        GOTO.ChatActivity(mContext);
                         break;
                     case 3:
-                        GOTO.FootballSaiShiFenXiActivity();
+                        GOTO.FootballSaiShiFenXiActivity(mContext);
                         break;
                     case 4:
-                        GOTO.SettingActivity();
+                        GOTO.SettingActivity(mContext);
                         break;
 
                 }
@@ -141,9 +141,9 @@ public class FootballDrawerMainActivity extends BaseActivity<ActivityFootballDra
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.FootballMeActivity(userInfo);
+                    GOTO.FootballMeActivity(mContext,userInfo);
                 }
                 break;
         }

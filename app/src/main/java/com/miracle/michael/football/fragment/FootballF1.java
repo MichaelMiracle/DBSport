@@ -148,7 +148,7 @@ public class FootballF1 extends BaseFragment<F1FootballBinding> {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvContactCustomerService:
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
                 break;
         }
     }

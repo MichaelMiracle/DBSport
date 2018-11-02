@@ -47,7 +47,7 @@ public class RegisterSuccessDialog extends Dialog {
                         SQLiteUtil.saveString(SQLiteKey.USER, GsonUtil.obj2Json(user));
                         SQLiteUtil.saveEncryptedString(SQLiteKey.PASSWORD, password);
                         SQLiteUtil.saveBoolean(SQLiteKey.AUTOLOGIN+CommonUtils.getUserId(), true);
-                        GOTO.MainActivity();
+                        GOTO.MainActivity(context);
                         App.getApp().finishAllActivity();
                         if (context instanceof Activity) {
                             ((Activity) context).finish();

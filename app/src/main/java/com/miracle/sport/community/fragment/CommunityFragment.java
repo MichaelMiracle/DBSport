@@ -76,7 +76,6 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         images = new ArrayList<>();
         images.add("file:///android_asset/football/16.jpg");
         images.add("file:///android_asset/football/17.jpg");
-        images.add("file:///android_asset/football/18.jpg");
         images.add("file:///android_asset/football/19.jpg");
         images.add("file:///android_asset/football/20.jpg");
         binding.banner.setImages(images).setImageLoader(new ImageLoader() {
@@ -102,7 +101,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
             @Override
             public void onClick(View v) {
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
                     startActivity(new Intent(mContext, PublishPostActivity.class));
                 }
@@ -144,7 +143,7 @@ public class CommunityFragment extends BaseFragment<FragmentCommunityBinding> {
         switch (v.getId()) {
             case R.id.ibMyCircle:
                 if (CommonUtils.getUser() == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
                     startActivity(new Intent(mContext, CircleActivity.class));
                 }

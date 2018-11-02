@@ -65,7 +65,7 @@ public class CircleTurntableActivity extends AppCompatActivity implements View.O
             public void onClick(View v) {
                 hasButtonClicked = true;
                 dialog.dismiss();
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(CircleTurntableActivity.this);
                 CircleTurntableActivity.this.finish();
                 SQLiteUtil.saveBoolean(SQLiteKey.HAS_DRAWED + AppConfig.USER_ID, true);
             }

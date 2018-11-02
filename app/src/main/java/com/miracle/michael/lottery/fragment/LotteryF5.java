@@ -79,33 +79,33 @@ public class LotteryF5 extends BaseFragment<F5LotteryBinding> {
         switch (v.getId()) {
             case R.id.llMe:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.MeInfoActivity(userInfo);
+                    GOTO.MeInfoActivity(mContext,userInfo);
                 }
                 break;
             case R.id.ibOrderManage:
                 break;
             case R.id.ibBailManage:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
-                    GOTO.LotteryMyCollectionsActivity();
+                    GOTO.LotteryMyCollectionsActivity(mContext);
                 }
                 break;
             case R.id.ibSettings:
-                GOTO.SettingActivity();
+                GOTO.SettingActivity(mContext);
                 break;
             case R.id.ibGroupChat:
-                GOTO.ChatActivity();
+                GOTO.ChatActivity(mContext);
                 break;
 
             case R.id.ibCustomerService:
-                GOTO.CustomerServiceActivity();
+                GOTO.CustomerServiceActivity(mContext);
                 break;
             case R.id.ibShare:
                 if (userInfo == null) {
-                    GOTO.LoginActivity();
+                    GOTO.LoginActivity(mContext);
                 } else {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
@@ -116,7 +116,7 @@ public class LotteryF5 extends BaseFragment<F5LotteryBinding> {
                 break;
 
             case R.id.ibAboutUs:
-                GOTO.AboutUsActivity();
+                GOTO.AboutUsActivity(mContext);
                 break;
 
         }
