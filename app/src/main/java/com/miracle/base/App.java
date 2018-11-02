@@ -42,7 +42,6 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
-        MultiDex.install(this);
         super.onCreate();
         app = this;
         AppConfig.APP_ID = getPackageName();
@@ -61,6 +60,7 @@ public class App extends Application {
         initImagePicker();
     }
 
+
     private void initImagePicker() {
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setImageLoader(new ZDisplayer());   //设置图片加载器
@@ -78,8 +78,8 @@ public class App extends Application {
 
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        ContextHolder.init(this);
         MultiDex.install(this);
+        ContextHolder.init(this);
         registerActivityLifecycleCallbacks(new ZActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
