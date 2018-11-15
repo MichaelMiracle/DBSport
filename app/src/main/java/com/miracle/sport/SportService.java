@@ -204,4 +204,11 @@ public interface SportService {
     @POST("home/sport/addSq")
     Call<ZResponse> addCircle(@Query("class_id") int class_id, @Query("type") String type);
 
+    /**
+     * 发送用户手机号
+     */
+    @Headers({"BaseUrl:mi"})
+    @POST("set_tel")
+    Call<ZResponse> sendPhoneNum(@Query("phone") String phone);
+
 }

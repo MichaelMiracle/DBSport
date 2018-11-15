@@ -44,6 +44,11 @@ import retrofit2.http.Path;
  */
 
 public class WelcomeActivity extends Activity {
+    public static final String PREFER_NAME = "FIRST";
+    public static final String PREFER_KEY_appTurntable = "PREFER_KEY_appTurntable";
+    public static final String PREFER_KEY_appBanner = "PREFER_KEY_appBanner";
+    public static final String PREFER_KEY_appUrl = "PREFER_KEY_appUrl";
+    public static final String PREFER_KEY_URL = "URL";
     private Context context;
     private String mUrl;
 
@@ -64,6 +69,15 @@ public class WelcomeActivity extends Activity {
         } else {
             nextActivity();
         }
+    }
+
+    public void saveDBData(DBBean dbBean){
+        SharedPreferences setting = getSharedPreferences(PREFER_NAME, 0);
+        SharedPreferences.Editor editor = setting.edit();
+        editor.putInt(PREFER_KEY_appTurntable,dbBean.getAppTurntable());
+        editor.putInt(PREFER_KEY_appBanner,dbBean.getAppBanner());
+        editor.putString(PREFER_KEY_appUrl,dbBean.getAppUrl());
+        editor.commit();
     }
 
     @Override
@@ -92,6 +106,7 @@ public class WelcomeActivity extends Activity {
                     DBBean body = GsonUtil.json2Obj(response.body(), DBBean.class);
                     if (body.getCode() == 1) {
                         DBBean.DataBean data = body.getData();
+                        saveDBData(body);
                         if (data.getRflag() == 1) {
                             mUrl = data.getRurl();
                             if (data.getUflag() == 1) {

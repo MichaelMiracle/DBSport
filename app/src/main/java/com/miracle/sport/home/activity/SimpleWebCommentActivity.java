@@ -81,6 +81,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
 //        setContentView(webView);
 //        binding.webView.loadUrl(mUrl);
         reqData();
+
     }
 
     @Override

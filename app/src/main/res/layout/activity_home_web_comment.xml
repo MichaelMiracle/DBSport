@@ -98,9 +98,6 @@
                             />
                     </RelativeLayout>
 
-
-
-
                     <ImageView
                         android:id="@+id/iv_good"
                         android:layout_width="match_parent"

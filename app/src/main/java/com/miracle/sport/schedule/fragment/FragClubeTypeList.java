@@ -51,13 +51,19 @@ public class FragClubeTypeList extends BaseFragment<FragClubetypeListBinding> {
             @Override
             public void onFinish(Call call) {
                 super.onFinish(call);
-                setUIStatus(ShowStat.NORMAL);
+                if(clubTypeAdapter.getData() != null && clubTypeAdapter.getData().size() > 0)
+                    setUIStatus(ShowStat.NORMAL);
+                else
+                    setUIStatus(ShowStat.NODATA);
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
                 super.onFailure(call, t);
-                setUIStatus(ShowStat.ERR);
+                if(clubTypeAdapter.getData() == null || clubTypeAdapter.getData().size() == 0)
+                {
+                    setUIStatus(ShowStat.ERR);
+                }
             }
         };
         callback.initSwipeRefreshLayout(binding.swipeRefreshLayout);

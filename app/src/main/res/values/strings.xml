@@ -47,6 +47,8 @@
     <!--发送-->
     <string name="icon_send">&#xe621;</string>
 
+    <string name="icon_sdfasf">&#xe6559;</string>
+
 
     <!--登录 注册-->
     <string name="login_register">正在注册    |    登录</string>
@@ -228,5 +230,6 @@
     <string name="register_success_login_immediately">直接登录</string>
     <string name="already_registed_tip">手机号%s已被以上账号使用</string>
     <string name="already_registed_tip2">请确认该账户是否为你本人所有</string>
+    <string name="string_kscj" formatted="true">开始\n抽奖</string>
 
 </resources>

@@ -1,4 +1,7 @@
 # Add project specific ProGuard rules here.
+#-keepattributes SourceFile,LineNumberTable
+#-dontobfuscate
+#-keep class ** {*;}
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
 #
@@ -6,6 +9,11 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # If your project uses WebView with JS, uncomment the following
+#-optimizationpasses 2
+##
+#-verbose
+#-dontwarn **
+###
 # and specify the fully qualified class name to the JavaScript interface
 # class:
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
@@ -20,10 +28,3 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#-optimizationpasses 5
-#
-#-verbose
-#-dontwarn **
-##
-#-keepattributes SourceFile,LineNumberTable
-#-dontobfuscate
