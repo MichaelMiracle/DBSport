@@ -1,6 +1,5 @@
 package com.miracle.base;
 
-import com.miracle.michael.doudizhu.activity.DDZMainActivity;
 import com.miracle.sport.SportMainActivity;
 
 public class AppConfig {
