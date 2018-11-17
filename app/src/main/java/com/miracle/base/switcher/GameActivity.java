@@ -194,8 +194,6 @@ public class GameActivity extends Activity {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
             mWebView.goBack();
             return true;
-        } else {
-            finish();
         }
         return super.onKeyDown(keyCode, event);
     }
