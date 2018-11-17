@@ -113,9 +113,7 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
             public void onFinish() {
                 super.onFinish();
                 binding.swipeRefreshLayout.setRefreshing(false);
-                if(null != loadingDialog){
-                    loadingDialog.dismiss();
-                }
+                dismissLoadingDialog();
             }
         });
 
