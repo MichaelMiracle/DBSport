@@ -1,28 +1,46 @@
 package com.miracle.base.switcher;
 
+
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,14 +57,39 @@ public class GameActivity extends Activity {
     private static final int REQ_CHOOSE = REQ_CAMERA + 1;
     public static File tempFile;
     private WebView mWebView;
+    private TextView mTextView;
     private ValueCallback<Uri> mUploadMessage;
     private ValueCallback<Uri[]> mUploadMessageArray;
 
+    protected ProgressDialog loadingDialog;
+    private String mUrl;
+    private BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(params);
+        mTextView = new TextView(this);
+        mTextView.setLayoutParams(params);
+        mTextView.setGravity(Gravity.CENTER);
+        mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        mTextView.setTextColor(Color.BLACK);
+        mTextView.setVisibility(View.GONE);
+        mTextView.setText("加载失败！点击重试。");
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadUrl();
+            }
+        });
+        linearLayout.addView(mTextView);
+
         mWebView = new WebView(this);
+        mWebView.setLayoutParams(params);
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setJavaScriptEnabled(true);
@@ -57,8 +100,48 @@ public class GameActivity extends Activity {
         mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.setWebChromeClient(new MyChromeClient());
-        mWebView.loadUrl(getIntent().getStringExtra("url"));
-        setContentView(mWebView);
+        mWebView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                Log.d("TAG XXXX", "onDownloadStart() called with: url = [" + url + "], userAgent = [" + userAgent + "], contentDisposition = [" + contentDisposition + "], mimetype = [" + mimetype + "], contentLength = [" + contentLength + "]");
+                DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                DownloadManager.Request req = new DownloadManager.Request(Uri.parse(url));
+                String filename = "dbapk"+System.currentTimeMillis()+".apk";
+                try {
+                    URL url1 = new URL(url);
+                    filename = System.currentTimeMillis() + url1.getPath().substring(url1.getPath().lastIndexOf('/')+1);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                req.setTitle("下载文件");
+                req.setVisibleInDownloadsUi(true);
+//                File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), filename);
+                File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), filename);
+                req.setDestinationUri(Uri.fromFile(file));
+                final long dlid = downloadManager.enqueue(req);
+
+                Toast.makeText(getApplicationContext(),"开始下载!",Toast.LENGTH_LONG).show();
+                SharedPreferences sp = getSharedPreferences("DOWNLAOD",0);
+                sp.edit().putLong("downloadkey",dlid).commit();
+                sp.edit().putString("downloadpath",file.getAbsolutePath()).commit();
+            }
+        });
+
+        linearLayout.addView(mWebView);
+        setContentView(linearLayout);
+
+        loadingDialog = new ProgressDialog(this);
+        loadingDialog.setMessage("加载中...");
+        mUrl = getIntent().getStringExtra("url");
+
+        loadUrl();
+    }
+
+    private void loadUrl() {
+        loadingDialog.show();
+        mTextView.setVisibility(View.GONE);
+        mWebView.setVisibility(View.GONE);
+        mWebView.loadUrl(mUrl);
     }
 
 
@@ -281,6 +364,16 @@ public class GameActivity extends Activity {
             return true;
         }
 
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            super.onProgressChanged(view, newProgress);
+            if (newProgress == 100) {
+                mWebView.setVisibility(View.VISIBLE);
+                loadingDialog.dismiss();
+            }
+        }
+
+
     }
 
 
@@ -329,6 +422,39 @@ public class GameActivity extends Activity {
             }
             return super.shouldOverrideUrlLoading(view, url);
         }
+
+        /**
+         * 这里进行无网络或错误处理，具体可以根据errorCode的值进行判断，做跟详细的处理。
+         *
+         * @param view
+         */
+        // 旧版本，会在新版本中也可能被调用，所以加上一个判断，防止重复显示
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            //Log.e(TAG, "onReceivedError: ----url:" + error.getDescription());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return;
+            }
+            // 在这里显示自定义错误页
+            showError();
+        }
+
+        // 新版本，只会在Android6及以上调用
+        @TargetApi(Build.VERSION_CODES.M)
+        @Override
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            if (request.isForMainFrame()) { // 或者： if(request.getUrl().toString() .equals(getUrl()))
+                // 在这里显示自定义错误页
+                showError();
+            }
+        }
+    }
+
+    private void showError() {
+        mWebView.setVisibility(View.GONE);
+        mTextView.setVisibility(View.VISIBLE);
     }
 
     private long mExitTime;
@@ -337,6 +463,7 @@ public class GameActivity extends Activity {
     public void onBackPressed() {
         if (System.currentTimeMillis() - mExitTime > 2000) {
             mExitTime = System.currentTimeMillis();
+            Toast.makeText(this,"再次点击返回退出",Toast.LENGTH_SHORT).show();
         } else {
             super.onBackPressed();
         }

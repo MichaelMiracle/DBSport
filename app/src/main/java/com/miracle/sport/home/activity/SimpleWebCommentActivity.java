@@ -87,7 +87,6 @@ public class SimpleWebCommentActivity extends BaseActivity<ActivityHomeWebCommen
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     private void reqData() {
